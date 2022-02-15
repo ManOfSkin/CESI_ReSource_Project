@@ -4,7 +4,8 @@
     padding: 0px;
 
     position: absolute;
-    width: 1920px;
+    display: block;
+    width: 100%;
     height: 182px;
     left: 0px;
     top: 0px;
@@ -12,7 +13,8 @@
 
 .navbar-up{
     position: absolute;
-    width: 1920px;
+    display: block;
+    width: 100%;
     height: 126px;
 
     display: flex;
@@ -60,7 +62,8 @@
 
 .navbar-down{
     position: absolute;
-    width: 1920px;
+    display: block;
+    width: 100%;
     height: 56px;
 
     margin-top: 126px;
