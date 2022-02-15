@@ -1,0 +1,88 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+
+    width: 1920px;
+    height: 272px;
+    background-color: white;
+}
+
+.footer-up{
+    position: relative;
+    width: 1920px;
+    height: 176px;
+
+    border-bottom: solid #e5e5e5 2px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center ;
+}
+
+.logo-footer-ministere{
+    margin: 12px 0 0 100px;
+}
+
+.logo-footer-app{
+    margin: 24px 0 0 4px;
+}
+
+.text-footer{
+    position: absolute;
+    width: 588px;
+    height: 96px;
+    right: 120px;
+    top:24px;
+}
+
+.text-footer ul{
+    padding: 0;
+}
+
+.text-footer ul li{
+    display: inline-block;
+    height: 24px;
+    margin-right: 20px;
+}
+
+.text-footer ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.footer-down{
+    position: relative;
+    width: 1920px;
+    height: 96px;
+}
+
+.list-footer ul{
+    padding: 0;
+    margin-top: 16px;
+    margin-left: 100px;
+}
+
+.list-footer ul li{
+    display: inline-block;
+    height: 20px;
+    padding-right: 16px;
+    margin-right: 16px;
+    border-right: solid #e5e5e5 1px;
+
+}
+
+.list-footer ul li a{
+    text-decoration: none;
+}
+
+.footer-down p{
+    margin-left: 100px;
+}
