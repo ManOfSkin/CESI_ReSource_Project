@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import DemoComponent from "./DemoComponent";
 import headerDesktop from "./Views/headerDesktop";
+import HeaderMobile from "./Views/HeaderMobile";
+import FooterMobile from "./Views/FooterMobile";
 
 import './styles/global.scss';
 import './styles/app.css';
@@ -20,3 +22,13 @@ new Vue({
     components: { DemoComponent },
     template: "<DemoComponent />"
 }).$mount("#demoComponent ");
+
+new Vue({
+    components: { HeaderMobile },
+    template: "<HeaderMobile />"
+}).$mount("#headerMobile ");
+
+new Vue({
+    components: { FooterMobile },
+    template: "<FooterMobile />"
+}).$mount("#footerMobile ");
