@@ -43,17 +43,28 @@
         </div>
         <div class="navbar-down navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#">Accueil</a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#">Ressources</a>
+                    <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../images/dropdown.png"></a>
+                    <ul class="dropdown-menu m-auto" aria-labelledby="ressourceDropdown">
+                        <li><a class="dropdown-item" href="#">Documents</a></li>
+                        <li><a class="dropdown-item" href="#">Images</a></li>
+                        <li><a class="dropdown-item" href="#">Vidéos</a></li>
+                        <li><a class="dropdown-item" href="#">Jeux</a></li>                        
+                    </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#">Favoris</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Favoris</a>
                 </li>
                 <li class="nav-item dropdown" id="nav-profil">
-                    <a class="nav-link dropdown-toggle" href="#">Profil</a>
+                    <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../images/dropdown.png"> </a>
+                    <ul class="dropdown-menu" aria-labelledby="profilDropdown">
+                        <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
