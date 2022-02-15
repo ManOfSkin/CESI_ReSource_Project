@@ -1,5 +1,21 @@
 // customize some Bootstrap variables
-$primary: #ff0000;
+$primary: #000091;
+$danger: #ce0500;
+$success: #18753c;
+$warning: #b34000;
+$info: #0063cb;
+
+@font-face {
+    font-family: "Marianne";
+    src: url("../fonts/Marianne/fontes web/Marianne-Regular.woff2") format("woff2"),
+        url("../fonts/Marianne/fontes web/Marianne-Regular.woff") format("woff");
+
+}
+
+$font-family-sans-serif: "Marianne";
+$font-family-monospace: "Marianne";
+$font-family-base: "Marianne";
+$font-family-code: "Marianne";
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
