@@ -4,5 +4,9 @@
 }
 
 body {
-    background-color: lightgray;
+    background-color: #e5e5e5;
+}
+
+.container{
+    margin-top: 200px;
 }
