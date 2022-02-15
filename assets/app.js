@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import DemoComponent from "./DemoComponent";
-import headerDesktop from "./Views/headerDesktop";
+import headerDesktop from "./Views/HeaderDesktop";
 import HeaderMobile from "./Views/HeaderMobile";
 import FooterMobile from "./Views/FooterMobile";
 
 import './styles/global.scss';
-import './styles/app.css';
 import './styles/headerDesktop.css'
 
 const $ = require('jquery');

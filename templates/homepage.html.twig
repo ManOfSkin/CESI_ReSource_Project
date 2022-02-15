@@ -2,19 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Ressources Relationnelle{% endblock %}</title>
         <link rel="icon" href="{{ asset('img/logo.ico') }}" />
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('homepage') }}
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('homepage') }}
         {% endblock %}
     </head>
     <body>
-        <header id="headerMobile"></header>
+        <header id="HeaderGood"></header>
 
         <footer id="footerMobile"></footer>
     </body>
