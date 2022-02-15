@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import DemoComponent from "./DemoComponent";
 
+import './styles/global.scss';
+
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
