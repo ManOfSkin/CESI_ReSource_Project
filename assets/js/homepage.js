@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import HeaderGood from "../Views/HeaderGood";
-import FooterMobile from "../Views/FooterMobile";
+import FooterGood from "../Views/FooterGood";
 
 import '../styles/global.scss';
-import '../styles/headerDesktop.css'
+import '../styles/headerDesktop.css';
+import '../styles/footerDesktop.css';
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
@@ -17,6 +18,6 @@ new Vue({
 }).$mount("#HeaderGood ");
 
 new Vue({
-    components: { FooterMobile },
-    template: "<FooterMobile />"
-}).$mount("#footerMobile ");
+    components: { FooterGood },
+    template: "<FooterGood />"
+}).$mount("#FooterGood ");
