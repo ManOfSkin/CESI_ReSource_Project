@@ -35,7 +35,7 @@ class Utilisateur
 
     public function setNom(string $nom): self
     {
-        $this->city = $nom;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -49,7 +49,7 @@ class Utilisateur
         return $this->prenom;
     }
 
-    public function setPrenom($prenom): self
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
         return $this;
@@ -63,7 +63,7 @@ class Utilisateur
         return $this->mail;
     }
 
-    public function setMail($mail): self
+    public function setMail(string $mail): self
     {
         $this->mail = $mail;
         return $this;
@@ -77,7 +77,7 @@ class Utilisateur
         return $this->mdp;
     }
 
-    public function setMdp($mdp): self
+    public function setMdp(string $mdp): self
     {
         $this->mdp = $mdp;
         return $this;

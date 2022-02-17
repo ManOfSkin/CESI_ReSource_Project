@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use src\Repository\StatutRepository;
@@ -25,7 +24,7 @@ class Statut
         return $this;
     }
 
-    #[ORM\Column(name: "libelle-statut", type: 'string', length: 40)]
+    #[ORM\Column(name: "libelle_statut", type: 'string', length: 40)]
     private $libelle_statut;
 
     public function getLibelleStatut(): ?string
