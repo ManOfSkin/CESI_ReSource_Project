@@ -22,10 +22,11 @@ new Vue({
     template: "<DemoComponent />"
 }).$mount("#demoComponent ");
 
-
 new Vue({
     template: "<login_page_m />"
 }).$mount("#login_page_m ");
+
+
 /* new Vue({
     components: { HeaderMobile },
 }).$mount("#headerMobile ");
