@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="navbar-down navbar-expand-lg navbar-light bg-light">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Accueil</a>
                 </li>
