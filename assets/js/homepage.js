@@ -3,8 +3,11 @@ import HeaderGood from "../Views/HeaderGood";
 import FooterGood from "../Views/FooterGood";
 
 import '../styles/global.scss';
+import '../styles/homepage.css';
 import '../styles/headerDesktop.css';
+import '../styles/headerMobile.css';
 import '../styles/footerDesktop.css';
+import '../styles/footerMobile.css';
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it

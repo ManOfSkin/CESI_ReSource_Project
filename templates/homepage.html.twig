@@ -7,7 +7,7 @@
         <link rel="manifest"  href="{{ asset('manifest.json') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('homepage') }}
         {% endblock %}
 
         {% block javascripts %}
@@ -15,7 +15,7 @@
         {% endblock %}
     </head>
     <body>
-        <header id="HeaderGood"></header>
+        <div id="HeaderGood"></div>
         <div class="container">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum turpis nec massa pharetra tincidunt. Nunc varius dictum nunc, eget facilisis nisl viverra sit amet. In elit lorem, gravida a enim non, porta scelerisque metus. Vestibulum dapibus eu tellus sit amet euismod. In hac habitasse platea dictumst. Nam vel commodo odio. Duis tincidunt faucibus imperdiet. Etiam ut lacinia orci.
 
@@ -27,7 +27,7 @@
 
             Pellentesque ut rutrum ante, vitae pretium magna. Fusce in quam imperdiet, faucibus ipsum eget, porttitor arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus vel convallis elit, vitae suscipit lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse et diam id purus tristique tempor et eu urna. Suspendisse interdum ultricies mi et tempor. Vivamus rhoncus consequat ultricies.
         </div>
-        <footer id="FooterGood"></footer>
+        <div id="FooterGood"></div>
         <script>
         if('serviceWorker' in navigator){
             navigator.serviceWorker.register("{{ asset('sw.js') }}")
