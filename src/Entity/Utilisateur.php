@@ -1,32 +1,38 @@
 <?php
+
 namespace App\Entity;
 
-use phpDocumentor\Reflection\Types\Integer;
-use src\Repository\UtilisateurRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 class Utilisateur
 {
-    #[ORM\Id, ORM\GeneratedValue()]
-    #[ORM\Column(name: 'Id_user', type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
-
-    private $id_user;
-
-    public function getIdUser(): ?string
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser($id_user): self
-    {
-        $this->id_user = $id_user;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $nom;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $prenom;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $mail;
+
+    #[ORM\Column(type: 'string', length: 40)]
+    private $mdp;
+
+    #[ORM\ManyToOne(targetEntity: Statut::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $statut;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNom(): ?string
     {
@@ -40,10 +46,6 @@ class Utilisateur
         return $this;
     }
 
-
-    #[ORM\Column(type: 'string', length: 50)]
-    private $prenom;
-
     public function getPrenom(): ?string
     {
         return $this->prenom;
@@ -52,11 +54,9 @@ class Utilisateur
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
         return $this;
     }
-
-    #[ORM\Column(type: 'string', length: 50)]
-    private $mail;
 
     public function getMail(): ?string
     {
@@ -66,11 +66,9 @@ class Utilisateur
     public function setMail(string $mail): self
     {
         $this->mail = $mail;
+
         return $this;
     }
-
-    #[ORM\Column(type: 'string', length: 40)]
-    private $mdp;
 
     public function getMdp(): ?string
     {
@@ -80,23 +78,19 @@ class Utilisateur
     public function setMdp(string $mdp): self
     {
         $this->mdp = $mdp;
+
         return $this;
     }
 
-    #[ORM\Column(type: 'integer')]
-    #[ORM\OneToOne(mappedBy:"id_statut", targetEntity:"src\Entity\Statut")]
-    #[ORM\JoinColumn(name:"id_user", referencedColumnName:"id_statut" )]
-    private $id_statut;
-
-    public function getIdStatut(): ?string
+    public function getStatut(): ?Statut
     {
-        return $this->id_statut;
+        return $this->statut;
     }
 
-    public function setIdStatut(string $id_statut): self
+    public function setStatut(?Statut $statut): self
     {
-        $this->id_statut = $id_statut;
+        $this->statut = $statut;
+
         return $this;
     }
-
 }
