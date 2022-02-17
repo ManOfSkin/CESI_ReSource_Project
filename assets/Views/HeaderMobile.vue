@@ -48,6 +48,8 @@
 </template>
 
 <script>
+
+import '../styles/headerMobile.css';
 export default {
   name: "HeaderMobile"
 }

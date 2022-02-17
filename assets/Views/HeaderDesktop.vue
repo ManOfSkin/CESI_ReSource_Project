@@ -72,6 +72,8 @@
 </template>
 
 <script>
+
+import '../styles/headerDesktop.css';
 export default {
   name: "HeaderDesktop"
 };

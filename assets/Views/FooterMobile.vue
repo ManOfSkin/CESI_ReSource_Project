@@ -32,6 +32,9 @@
 </template>
 
 <script>
+
+import '../styles/footerMobile.css';
+
 export default {
   name: "FooterMobile"
 }

@@ -74,6 +74,8 @@
 </template>
 
 <script>
+
+import '../styles/footerDesktop.css';
 export default {
   name: "footerDesktop"
 };
