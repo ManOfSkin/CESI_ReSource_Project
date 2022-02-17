@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import HeaderGood from "../Views/HeaderGood";
 import FooterGood from "../Views/FooterGood";
+import HeaderGood from "../Views/HeaderGood";
 
 import '../styles/global.scss';
 import '../styles/homepage.css';

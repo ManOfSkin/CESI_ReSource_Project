@@ -7,8 +7,6 @@ import FooterMobile from "./Views/FooterMobile"; */
 
 import './styles/global.scss';
 import './styles/app.css';
-import './styles/headerDesktop.css';
-import './styles/footerDesktop.css';
 
 const $ = require('jquery');
 require('bootstrap');

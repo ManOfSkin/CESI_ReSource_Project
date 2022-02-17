@@ -33,13 +33,68 @@
 
 <script>
 
-import '../styles/footerMobile.css';
-
 export default {
   name: "FooterMobile"
 }
 </script>
 
 <style scoped>
+.footer{
+  position: absolute;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+  height: 41px;
+  left: 0;
+  bottom: 0;
 
+  background: #FFFFFF;
+}
+
+.heart{
+  width: 20px;
+  height: 20px;
+}
+
+.plus{
+  width: 20px;
+  height: 23px;
+}
+
+.book{
+  width: 19px;
+  height: 22px;
+}
+
+.home{
+  width: 24px;
+  height: 22px;
+}
+
+.user{
+  width: 16px;
+  height: 19px;
+}
+
+.separateur{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0px;
+  top: 0px;
+}
+
+.separateur div{
+  height: 1px;
+  /* light/primary/$blue-france-850 */
+  background: #CACAFB;
+  align-self: stretch;
+}
 </style>
