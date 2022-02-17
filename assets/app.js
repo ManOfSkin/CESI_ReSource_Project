@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import DemoComponent from "./DemoComponent";
 import login_page_m from "./Views/login_page_m";
+import FooterDesktop from "./Views/FooterDesktop";
+import headerDesktop from "./Views/HeaderDesktop";
+/* import HeaderMobile from "./Views/HeaderMobile";
+import FooterMobile from "./Views/FooterMobile"; */
 
 import './styles/global.scss';
+import './styles/app.css';
 
 const $ = require('jquery');
-// this "modifies" the jquery module: adding behavior to it
-// the bootstrap module doesn't export/return anything
 require('bootstrap');
 
-// or you can include specific pieces
-// require('bootstrap/js/dist/tooltip');
-// require('bootstrap/js/dist/popover');
-
-$(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
-});
+new Vue({
+    components: { headerDesktop },
+    template: "<headerDesktop />"
+}).$mount("#headerDesktop ");
 
 new Vue({
     components: { DemoComponent },
@@ -24,6 +24,19 @@ new Vue({
 
 
 new Vue({
-    components: { login_page_m },
     template: "<login_page_m />"
 }).$mount("#login_page_m ");
+/* new Vue({
+    components: { HeaderMobile },
+}).$mount("#headerMobile ");
+
+new Vue({
+    components: { FooterMobile },
+    template: "<FooterMobile />"
+}).$mount("#footerMobile "); */
+
+new Vue({
+    components: { FooterDesktop },
+    template: "<FooterDesktop />"
+}).$mount("#footerDesktop ");
+

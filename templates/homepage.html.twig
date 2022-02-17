@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ressources Relationnelle{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{{ asset('img/logo.ico') }}" />
+        <link rel="manifest"  href="{{ asset('manifest.json') }}">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('homepage') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('homepage') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="HeaderGood"></div>
+        <div class="container">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum turpis nec massa pharetra tincidunt. Nunc varius dictum nunc, eget facilisis nisl viverra sit amet. In elit lorem, gravida a enim non, porta scelerisque metus. Vestibulum dapibus eu tellus sit amet euismod. In hac habitasse platea dictumst. Nam vel commodo odio. Duis tincidunt faucibus imperdiet. Etiam ut lacinia orci.
+
+            Suspendisse porta turpis sed lorem dignissim, ut molestie lorem tempor. Aliquam erat volutpat. Nullam nec tellus dictum, viverra erat et, rhoncus quam. Duis condimentum et diam sit amet gravida. Phasellus rhoncus facilisis laoreet. Sed in est egestas, hendrerit eros sed, rutrum orci. Sed commodo mauris libero, non efficitur est ornare sed. Nunc at condimentum elit. Mauris eget quam leo. Proin vitae scelerisque mauris. Nulla tincidunt nisi pulvinar urna ornare porta. Praesent blandit felis vitae neque pellentesque, a pulvinar urna volutpat. Donec lobortis tortor vitae pulvinar imperdiet.
+
+            Sed pharetra justo quis tincidunt laoreet. Sed posuere vestibulum pellentesque. Suspendisse in ex sed lacus pretium faucibus eu et urna. Donec id egestas lacus. Etiam tincidunt velit aliquam neque feugiat auctor. Cras elementum ac mauris nec aliquet. Nam dignissim id augue id egestas.
+
+            Aliquam sollicitudin vitae purus quis feugiat. Cras lacinia in ligula ut semper. Phasellus feugiat sem eu urna fermentum aliquam. Nullam interdum justo vel massa mattis, eu convallis leo consequat. Fusce ullamcorper interdum ultrices. Morbi semper at nibh egestas mattis. Fusce bibendum sagittis risus et pretium. Quisque fermentum tincidunt augue, a placerat diam blandit eu. Mauris ut ante vitae erat mattis imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed laoreet metus in tempor lacinia. Fusce id purus id eros pharetra vestibulum id et tellus. Etiam pellentesque interdum interdum. Donec eget felis nunc. Cras nec laoreet nisl, ac ultrices tortor.
+
+            Pellentesque ut rutrum ante, vitae pretium magna. Fusce in quam imperdiet, faucibus ipsum eget, porttitor arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus vel convallis elit, vitae suscipit lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse et diam id purus tristique tempor et eu urna. Suspendisse interdum ultricies mi et tempor. Vivamus rhoncus consequat ultricies.
+        </div>
+        <div id="FooterGood"></div>
+        <script>
+        if('serviceWorker' in navigator){
+            navigator.serviceWorker.register("{{ asset('sw.js') }}")
+            .then(function(registration){
+                console.log("Service Worker Registered !");
+            })
+            .catch(function(err){
+                console.log('Service Worker Failed !', err);
+            });
+        }
+        </script>
+    </body>
+</html>
