@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import DemoComponent from "./DemoComponent";
-import login_page_m from "./Views/login_page_m";
 import FooterDesktop from "./Views/FooterDesktop";
 import headerDesktop from "./Views/HeaderDesktop";
-/* import HeaderMobile from "./Views/HeaderMobile";
-import FooterMobile from "./Views/FooterMobile"; */
+import HeaderMobile from "./Views/HeaderMobile";
+import FooterMobile from "./Views/FooterMobile";
 
 import './styles/global.scss';
 import './styles/app.css';
+import './styles/headerDesktop.css'
+import './styles/footerDesktop.css'
 
 const $ = require('jquery');
 require('bootstrap');
@@ -22,21 +23,17 @@ new Vue({
     template: "<DemoComponent />"
 }).$mount("#demoComponent ");
 
-
 new Vue({
-    template: "<login_page_m />"
-}).$mount("#login_page_m ");
-/* new Vue({
     components: { HeaderMobile },
+    template: "<HeaderMobile />"
 }).$mount("#headerMobile ");
 
 new Vue({
     components: { FooterMobile },
     template: "<FooterMobile />"
-}).$mount("#footerMobile "); */
+}).$mount("#footerMobile ");
 
 new Vue({
     components: { FooterDesktop },
     template: "<FooterDesktop />"
 }).$mount("#footerDesktop ");
-
