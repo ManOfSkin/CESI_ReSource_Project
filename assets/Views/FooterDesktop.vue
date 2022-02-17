@@ -174,5 +174,8 @@ export default {
 .footer-down p{
   margin-left: 100px;
   padding-left: 16px;
+
+  margin-bottom: 0;
+  padding-bottom: 1rem;
 }
 </style>
