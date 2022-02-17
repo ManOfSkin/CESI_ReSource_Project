@@ -1,7 +1,7 @@
 <template>
     <form action="#" method="post">
         <div class="form-header">
-            <img src="../images/retour.png">
+            <img src="../../images/retour.png">
             <h1>Ajouter une ressource</h1>
         </div>
         <div class="form-body">

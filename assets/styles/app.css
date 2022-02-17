@@ -8,6 +8,13 @@ body{
     overflow-x: hidden;
 }
 
+#HeaderDesktop{
+    height: 182px;
+    margin-bottom: 5vh;
+}
+
 .container{
     position: relative;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }

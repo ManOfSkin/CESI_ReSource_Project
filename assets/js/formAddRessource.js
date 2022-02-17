@@ -1,11 +1,9 @@
 import Vue from 'vue'
-import FooterGood from "../Views/FooterGood";
-import formAddRessource from "../Views/FormAddRessource";
-import HeaderGood from "../Views/HeaderGood";
+import FooterGood from "../Views/Footer/FooterGood";
+import formAddRessource from "../Views/Ressource/FormAddRessource";
+import HeaderGood from "../Views/Header/HeaderGood";
 
-
-import '../styles/global.scss';
-import '../styles/homepage.css';
+import '../styles/formAddRessource.css';
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it

@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <div class="footer-up">
-          <a href="../">
+          <a href="../..">
             <div class="logo-footer">
                 <div class="logo-footer-ministere">
                     <svg width="140" height="145" viewBox="0 0 140 145" fill="none" xmlns="http://www.w3.org/2000/svg">

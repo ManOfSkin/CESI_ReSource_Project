@@ -1,7 +1,7 @@
 <template>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-up navbar-expand-lg navbar-light bg-light">
-            <a href="../">
+            <a href="../..">
               <div class="logo">
                   <div class="logo-ministere">
                       <svg width="112" height="102" viewBox="0 0 112 102" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                     <a class="nav-link active" href="#">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../images/dropdown.png"></a>
+                    <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../../images/dropdown.png"></a>
                     <ul class="dropdown-menu" aria-labelledby="ressourceDropdown">
                         <li><a class="dropdown-item" href="#">Documents</a></li>
                         <li><a class="dropdown-item" href="#">Images</a></li>
@@ -61,7 +61,7 @@
                     <a class="nav-link" href="#">Favoris</a>
                 </li>
                 <li class="nav-item dropdown" id="nav-profil">
-                    <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../images/dropdown.png"> </a>
+                    <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../../images/dropdown.png"> </a>
                     <ul class="dropdown-menu" aria-labelledby="profilDropdown">
                         <li><a class="dropdown-item" href="#">Mon compte</a></li>
                         <li><a class="dropdown-item" href="#">Paramètres</a></li>

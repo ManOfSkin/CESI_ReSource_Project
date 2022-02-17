@@ -2,28 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Ressource relationnel{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{{ asset('img/logo.ico') }}" />
         <link rel="manifest"  href="{{ asset('manifest.json') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_script_tags('app') }}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        <div id="login_page_m">
-        <header id="headerDesktop"></header>
-{#         <header id="headerMobile"></header>
- #}        <div id="demoComponent">
-        </div>
-{#         <footer id="footerMobile"></footer>
- #}        <footer id="footerDesktop"></footer>
-
+        <div id="HeaderGood"></div>
+        {%  block body %}
+        {% endblock %}
+        <div id="FooterGood"></div>
         <script>
         if('serviceWorker' in navigator){
             navigator.serviceWorker.register("{{ asset('sw.js') }}")
