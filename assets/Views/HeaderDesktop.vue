@@ -133,6 +133,7 @@ export default {
   border: none;
   border-top-left-radius: 4px;
   border-bottom: solid var(--bs-primary) 2px;
+  padding: 16px 8px;
 }
 
 .search input:hover{
