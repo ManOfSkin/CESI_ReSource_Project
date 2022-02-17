@@ -157,13 +157,14 @@ export default {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: left;
 }
 
 .list-footer ul li{
   display: inline-block;
   height: 20px;
   padding-right: 16px;
+  margin-left: 16px;
   margin-bottom: 4px;
   border-right: solid #e5e5e5 1px;
 }
