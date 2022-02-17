@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity;
 
+use phpDocumentor\Reflection\Types\Integer;
 use src\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,8 +10,7 @@ class Utilisateur
 {
     #[ORM\Id, ORM\GeneratedValue()]
     #[ORM\Column(name: 'Id_user', type: 'integer')]
-    #[ORM\OneToOne(mappedBy:"id_statut", targetEntity:"src\Entity\Statut")]
-    #[ORM\JoinColumn(name:"id_user", referencedColumnName:"id_statut" )]
+
 
     private $id_user;
 
@@ -80,6 +80,22 @@ class Utilisateur
     public function setMdp(string $mdp): self
     {
         $this->mdp = $mdp;
+        return $this;
+    }
+
+    #[ORM\Column(type: 'integer')]
+    #[ORM\OneToOne(mappedBy:"id_statut", targetEntity:"src\Entity\Statut")]
+    #[ORM\JoinColumn(name:"id_user", referencedColumnName:"id_statut" )]
+    private $id_statut;
+
+    public function getIdStatut(): ?string
+    {
+        return $this->id_statut;
+    }
+
+    public function setIdStatut(string $id_statut): self
+    {
+        $this->id_statut = $id_statut;
         return $this;
     }
 
