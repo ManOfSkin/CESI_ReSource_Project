@@ -1,6 +1,7 @@
 <template>
     <div class="footer">
         <div class="footer-up">
+          <a href="index.php">
             <div class="logo-footer">
                 <div class="logo-footer-ministere">
                     <svg width="140" height="145" viewBox="0 0 140 145" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,27 +29,28 @@
                     </svg>
                 </div>
             </div>
+          </a>
             <div class="text-footer">
                 <p>Texte optionnel 3 lignes maximum.<br><br>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.
                 </p>
                 <ul>
                     <li>
-                        <a href="#">legifrance.gouv.fr</a>
+                        <a href="https://www.legifrance.gouv.fr" target="_blank">legifrance.gouv.fr</a>
                     </li>
                     <li>
-                        <a href="#">gouvernement.fr</a>
+                        <a href="https://www.gouvernement.fr" target="_blank">gouvernement.fr</a>
                     </li>
                     <li>
-                        <a href="#">service-public.fr</a>
+                        <a href="https://www.service-public.fr" target="_blank">service-public.fr</a>
                     </li>
                     <li>
-                        <a href="#">data.gouv.fr</a>
+                        <a href="https://www.data.gouv.fr" target="_blank">data.gouv.fr</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="footer-down container-fluid fixed-bottom">
+        <div class="footer-down">
             <div class="list-footer">
                 <ul>
                     <li>
@@ -82,13 +84,9 @@ export default {
 
 <style scoped>
 .footer{
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-
   display: block;
   width: 100%;
-  height: 272px;
+  height: auto;
   background-color: white;
 }
 
@@ -147,7 +145,7 @@ export default {
   position: relative;
   display: block;
   width: 100%;
-  height: 96px;
+  height: auto;
 }
 
 .list-footer ul{
@@ -175,5 +173,6 @@ export default {
 
 .footer-down p{
   margin-left: 100px;
+  padding-left: 16px;
 }
 </style>
