@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!isMobile()">
-    <headerDesktop>
-    </headerDesktop>
+  <div v-if="!isMobile()" id="HeaderDesktop">
+    <HeaderDesktop>
+    </HeaderDesktop>
   </div>
   <div v-else>
     <HeaderMobile>

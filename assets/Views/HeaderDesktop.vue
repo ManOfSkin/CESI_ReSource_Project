@@ -73,6 +73,6 @@
 
 <script>
 export default {
-  name: "headerDesktop"
+  name: "HeaderDesktop"
 };
 </script>
