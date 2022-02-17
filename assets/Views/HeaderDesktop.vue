@@ -1,7 +1,7 @@
 <template>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-up navbar-expand-lg navbar-light bg-light">
-            <a href="index.php">
+            <a href="../">
               <div class="logo">
                   <div class="logo-ministere">
                       <svg width="112" height="102" viewBox="0 0 112 102" fill="none" xmlns="http://www.w3.org/2000/svg">
