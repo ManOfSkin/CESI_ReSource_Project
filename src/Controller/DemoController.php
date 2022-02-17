@@ -8,9 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DemoController extends AbstractController
 {
-    #[Route('/index', name: 'index')]
+    #[Route('/demo', name: 'demo')]
     public function index(): Response
     {
-        return $this->render('base.html.twig');
+        $auth = $this->isGranted('ROLE_USER');
+        return $this->render('base.html.twig',[
+            'auth' => $auth,
+        ]);
     }
 }

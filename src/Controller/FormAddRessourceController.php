@@ -11,6 +11,9 @@ class FormAddRessourceController extends AbstractController
     #[Route('/ressource/add', name: 'formAddRessource')]
     public function index(): Response
     {
-        return $this->render('form-add-ressource.html.twig');
+        $auth = $this->isGranted('ROLE_USER');
+        return $this->render('form-add-ressource.html.twig', [
+            'auth' => $auth,
+        ]);
     }
 }

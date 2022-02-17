@@ -11,6 +11,9 @@ class HomepageController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('homepage.html.twig');
+        $auth = $this->isGranted('ROLE_USER');
+        return $this->render('homepage.html.twig', [
+            'auth' => $auth,
+        ]);
     }
 }

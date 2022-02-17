@@ -9,11 +9,13 @@ const $ = require('jquery');
 require('bootstrap');
 
 new Vue({
+    el: '#HeaderGood',
     components: { HeaderGood },
     template: "<HeaderGood />"
-}).$mount("#HeaderGood ");
+})
 
 new Vue({
+    el: '#FooterGood',
     components: { FooterGood },
     template: "<FooterGood />"
-}).$mount("#FooterGood ");
+})

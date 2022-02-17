@@ -16,10 +16,11 @@
         {% endblock %}
     </head>
     <body>
-        <div id="HeaderGood"></div>
+        <HeaderGood id="HeaderGood" data-isauthenticated="{{ auth }}"></HeaderGood>
         {%  block body %}
+            {{ auth }}
         {% endblock %}
-        <div id="FooterGood"></div>
+        <FooterGood id="FooterGood"></FooterGood>
         <script>
         if('serviceWorker' in navigator){
             navigator.serviceWorker.register("{{ asset('sw.js') }}")

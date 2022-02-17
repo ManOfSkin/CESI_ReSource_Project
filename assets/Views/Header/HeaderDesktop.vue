@@ -1,5 +1,6 @@
 <template>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
+      {{ $attrs['data-isauthenticated'] }}
         <div class="navbar-up navbar-expand-lg navbar-light bg-light">
             <a href="../..">
               <div class="logo">
@@ -60,13 +61,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Favoris</a>
                 </li>
-                <li class="nav-item dropdown" id="nav-profil">
+                <li v-if="isAuthenticated" class="nav-item dropdown" id="nav-profil">
                     <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../../images/dropdown.png"> </a>
                     <ul class="dropdown-menu" aria-labelledby="profilDropdown">
                         <li><a class="dropdown-item" href="#">Mon compte</a></li>
                         <li><a class="dropdown-item" href="#">Paramètres</a></li>
-                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="logout">Déconnexion</a></li>
                     </ul>
+                </li>
+                <li v-else class="nav-item" id="nav-profil">
+                    <a class="nav-link" href="login">Connexion</a>
                 </li>
             </ul>
         </div>
@@ -75,7 +79,16 @@
 
 <script>
 export default {
-  name: "HeaderDesktop"
+  name: "HeaderDesktop",
+  data() {
+    return {
+      isAuthenticated: false
+    }
+  },
+  mounted: function() {
+    this.isAuthenticated =  this.$attrs['data-isauthenticated'];
+    console.log(this.isAuthenticated);
+  }
 };
 </script>
 

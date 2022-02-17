@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import login_page_m from "../Views/Login/login_page_m";
+import LoginGood from "../Views/Login/LoginGood";
 
 import '../styles/login_page.css';
 
@@ -10,7 +10,7 @@ require('bootstrap');
 
 
 new Vue({
-    components: { login_page_m },
-    template: "<login_page_m />"
-}).$mount("#login_page_m ");
+    components: { LoginGood },
+    template: "<LoginGood />"
+}).$mount("#LoginGood ");
 
