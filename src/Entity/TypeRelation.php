@@ -24,10 +24,14 @@ class TypeRelation
     #[ORM\ManyToMany(targetEntity: Ressource::class, mappedBy: 'type_relation')]
     private $ressource;
 
+    #[ORM\ManyToMany(targetEntity: Ressource::class, mappedBy: 'type_relation')]
+    private $ressources;
+
     public function __construct()
     {
         $this->id_ressource = new ArrayCollection();
         $this->ressource = new ArrayCollection();
+        $this->ressources = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,5 +103,13 @@ class TypeRelation
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Ressource[]
+     */
+    public function getRessources(): Collection
+    {
+        return $this->ressources;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RessourceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
@@ -10,7 +12,7 @@ class Ressource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: 'id_ressource',type: 'integer')]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -40,6 +42,29 @@ class Ressource
     #[ORM\ManyToOne(targetEntity: TypeRessource::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $type_ressource;
+
+    #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'ressources')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $categorie;
+
+    #[ORM\ManyToMany(targetEntity: TypeRelation::class, inversedBy: 'ressources')]
+    #[ORM\JoinTable(name: 'Asso_Ressource_TypeRelation')]
+    #[ORM\JoinColumn(name:'ressource_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name:'relation_id', referencedColumnName: 'id')]
+    private $type_relation;
+
+    #[ORM\OneToMany(mappedBy: 'ressource', targetEntity: Suivi::class)]
+    private $suivi;
+
+    #[ORM\OneToMany(mappedBy: 'ressource', targetEntity: Commenter::class)]
+    private $commentaire;
+
+    public function __construct()
+    {
+        $this->type_relation = new ArrayCollection();
+        $this->suivi = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +175,102 @@ class Ressource
     public function setTypeRessource(?TypeRessource $type_ressource): self
     {
         $this->type_ressource = $type_ressource;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TypeRelation[]
+     */
+    public function getTypeRelation(): Collection
+    {
+        return $this->type_relation;
+    }
+
+    public function addTypeRelation(TypeRelation $typeRelation): self
+    {
+        if (!$this->type_relation->contains($typeRelation)) {
+            $this->type_relation[] = $typeRelation;
+        }
+
+        return $this;
+    }
+
+    public function removeTypeRelation(TypeRelation $typeRelation): self
+    {
+        $this->type_relation->removeElement($typeRelation);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Suivi[]
+     */
+    public function getSuivi(): Collection
+    {
+        return $this->suivi;
+    }
+
+    public function addSuivi(Suivi $suivi): self
+    {
+        if (!$this->suivi->contains($suivi)) {
+            $this->suivi[] = $suivi;
+            $suivi->setRessource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuivi(Suivi $suivi): self
+    {
+        if ($this->suivi->removeElement($suivi)) {
+            // set the owning side to null (unless already changed)
+            if ($suivi->getRessource() === $this) {
+                $suivi->setRessource(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commenter[]
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commenter $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setRessource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commenter $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getRessource() === $this) {
+                $commentaire->setRessource(null);
+            }
+        }
 
         return $this;
     }

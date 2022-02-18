@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,10 +30,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\ManyToOne(targetEntity: Statut::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private $statut;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $pseudo;
 
@@ -40,6 +38,36 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     private $Prenom;
+
+    #[ORM\ManyToOne(targetEntity: Statut::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $statut;
+
+    #[ORM\ManyToMany(targetEntity: Groupe::class)]
+    #[ORM\JoinTable(name: 'Asso_utilisateur_groupe')]
+    #[ORM\JoinColumn(name:'utilisateur_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name:'groupe_id', referencedColumnName: 'id')]
+    private $groupe;
+
+    #[ORM\ManyToMany(targetEntity: Ressource::class)]
+    #[ORM\JoinTable(name: 'Asso_utilisateur_ressource')]
+    #[ORM\JoinColumn(name:'utilisateur_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name:'ressources_id', referencedColumnName: 'id')]
+    private $ressource;
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Suivi::class)]
+    private $suivis;
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commenter::class)]
+    private $commentaire;
+
+    public function __construct()
+    {
+        $this->groupe = new ArrayCollection();
+        $this->ressource = new ArrayCollection();
+        $this->suivis = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -155,6 +183,114 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $Prenom): self
     {
         $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Groupe[]
+     */
+    public function getGroupe(): Collection
+    {
+        return $this->groupe;
+    }
+
+    public function addGroupe(Groupe $groupe): self
+    {
+        if (!$this->groupe->contains($groupe)) {
+            $this->groupe[] = $groupe;
+        }
+
+        return $this;
+    }
+
+    public function removeGroupe(Groupe $groupe): self
+    {
+        $this->groupe->removeElement($groupe);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ressource[]
+     */
+    public function getRessource(): Collection
+    {
+        return $this->ressource;
+    }
+
+    public function addRessource(Ressource $ressource): self
+    {
+        if (!$this->ressource->contains($ressource)) {
+            $this->ressource[] = $ressource;
+        }
+
+        return $this;
+    }
+
+    public function removeRessource(Ressource $ressource): self
+    {
+        $this->ressource->removeElement($ressource);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Suivi[]
+     */
+    public function getSuivis(): Collection
+    {
+        return $this->suivis;
+    }
+
+    public function addSuivi(Suivi $suivi): self
+    {
+        if (!$this->suivis->contains($suivi)) {
+            $this->suivis[] = $suivi;
+            $suivi->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuivi(Suivi $suivi): self
+    {
+        if ($this->suivis->removeElement($suivi)) {
+            // set the owning side to null (unless already changed)
+            if ($suivi->getUtilisateur() === $this) {
+                $suivi->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commenter[]
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commenter $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commenter $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUtilisateur() === $this) {
+                $commentaire->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }
