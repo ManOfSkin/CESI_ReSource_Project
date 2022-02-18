@@ -10,7 +10,7 @@ class Groupe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(name: 'id_groupe',type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
