@@ -16,9 +16,10 @@
         {% endblock %}
     </head>
     <body>
-        <HeaderGood id="HeaderGood" data-isauthenticated="{{ auth }}"></HeaderGood>
+        <input type="hidden" id="is_connected" value="{{ auth }}">
+        <HeaderGood id="HeaderGood"></HeaderGood>
         {%  block body %}
-            {{ auth }}
+            {{ auth}}
         {% endblock %}
         <FooterGood id="FooterGood"></FooterGood>
         <script>

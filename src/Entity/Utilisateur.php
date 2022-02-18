@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ */
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -30,35 +32,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private $statut;
 
-    #[ORM\ManyToMany(targetEntity: Ressource::class, inversedBy: 'utilisateur')]
-    #[ORM\JoinTable(name: "creation_user_ressource"), ORM\JoinColumn(name:"user_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: 'ressource_id', referencedColumnName: 'id')]
-    private $ressource;
-
-    #[ORM\ManyToMany(targetEntity: Ressource::class, inversedBy: 'suivi_utilisateur')]
-    #[ORM\JoinTable(name: "suivi_user_ressource"), ORM\JoinColumn(name:"user_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: 'ressource_id', referencedColumnName: 'id')]
-    private $suivi_ressource;
-
-    #[ORM\ManyToMany(targetEntity: Groupe::class, inversedBy: 'utilisateur')]
-    #[ORM\JoinTable(name: "user_groupe"), ORM\JoinColumn(name:"user_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: 'groupe_id', referencedColumnName: 'id')]
-    private $groupe;
-
-    #[ORM\ManyToMany(targetEntity: Commentaire::class)]
-    #[ORM\JoinTable(name: "user_commentaire"), ORM\JoinColumn(name:"user_id", referencedColumnName: "id")]
-    #[ORM\InverseJoinColumn(name: 'commentaire_id', referencedColumnName: 'id')]
-    private $commentaire;
-
-
-
-    public function __construct()
-    {
-        $this->ressource = new ArrayCollection();
-        $this->groupe = new ArrayCollection();
-        $this->commentaire = new ArrayCollection();
-        $this->suivi_ressource = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'string', length: 255)]
+    private $pseudo;
 
     public function getId(): ?int
     {
@@ -142,98 +117,14 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Ressource[]
-     */
-    public function getRessource(): Collection
+    public function getPseudo(): ?string
     {
-        return $this->ressource;
+        return $this->pseudo;
     }
 
-    public function addRessource(Ressource $ressource): self
+    public function setPseudo(string $pseudo): self
     {
-        if (!$this->ressource->contains($ressource)) {
-            $this->ressource[] = $ressource;
-        }
-
-        return $this;
-    }
-
-    public function removeRessource(Ressource $ressource): self
-    {
-        $this->ressource->removeElement($ressource);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Groupe[]
-     */
-    public function getGroupe(): Collection
-    {
-        return $this->groupe;
-    }
-
-    public function addGroupe(Groupe $groupe): self
-    {
-        if (!$this->groupe->contains($groupe)) {
-            $this->groupe[] = $groupe;
-        }
-
-        return $this;
-    }
-
-    public function removeGroupe(Groupe $groupe): self
-    {
-        $this->groupe->removeElement($groupe);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Commentaire[]
-     */
-    public function getCommentaire(): Collection
-    {
-        return $this->commentaire;
-    }
-
-    public function addCommentaire(Commentaire $commentaire): self
-    {
-        if (!$this->commentaire->contains($commentaire)) {
-            $this->commentaire[] = $commentaire;
-        }
-
-        return $this;
-    }
-
-    public function removeCommentaire(Commentaire $commentaire): self
-    {
-        $this->commentaire->removeElement($commentaire);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Ressource[]
-     */
-    public function getSuiviRessource(): Collection
-    {
-        return $this->suivi_ressource;
-    }
-
-    public function addSuiviRessource(Ressource $suiviRessource): self
-    {
-        if (!$this->suivi_ressource->contains($suiviRessource)) {
-            $this->suivi_ressource[] = $suiviRessource;
-        }
-
-        return $this;
-    }
-
-    public function removeSuiviRessource(Ressource $suiviRessource): self
-    {
-        $this->suivi_ressource->removeElement($suiviRessource);
+        $this->pseudo = $pseudo;
 
         return $this;
     }
