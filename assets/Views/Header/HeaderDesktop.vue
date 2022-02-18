@@ -1,6 +1,5 @@
 <template>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
-      {{ $attrs['data-isauthenticated'] }}
         <div class="navbar-up navbar-expand-lg navbar-light bg-light">
             <a href="../..">
               <div class="logo">
