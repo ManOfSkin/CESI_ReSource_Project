@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="bg-light mt-4 p-4">
+                <h1>Inscription</h1>
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email) }}
+                <div class="row row-cols-md-2 row-cols-1">
+                    <div class="col">
+                        {{ form_row(registrationForm.nom,{
+                            label: 'Nom'
+                        }) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(registrationForm.prenom,{
+                            label: 'Prénom'
+                        }) }}
+                    </div>
+                </div>
+
+                {{ form_row(registrationForm.pseudo,{
+                    label: 'Pseudo'
+                }) }}
+                <div class="row row-cols-md-2 row-cols-1">
+                    <div class="col">
+                        {{ form_row(registrationForm.plainPassword.first) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(registrationForm.plainPassword.second) }}
+                    </div>
+                </div>
+{#                {{ form_row(registrationForm.agreeTerms) }}#}
+
+                <button type="submit" class="btn seconnecter">S'inscrire</button>
+                <style>
+                    .seconnecter {
+                        border: 1px solid #000091;
+                        background-color: #000091;
+                        text-decoration: none;
+
+                        font-size: 20px;
+                        color: #F5F5FF;
+
+                        width: 150px;
+                    }
+                    .seconnecter:hover {
+                        color: #c1c1c9;
+                    }
+                </style>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

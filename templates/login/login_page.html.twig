@@ -8,9 +8,15 @@
     {{ encore_entry_script_tags('login_page') }}
 {% endblock %}
 
+{% block header %}
+{% endblock %}
+
 {% block body %}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div id="LoginGood"></div>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}
