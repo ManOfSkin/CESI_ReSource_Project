@@ -58,7 +58,7 @@
                         <li><a class="dropdown-item" href="#">Jeux</a></li>                        
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li v-if="is_connected" class="nav-item">
                     <a class="nav-link" href="#">Favoris</a>
                 </li>
                 <li v-if="is_connected" class="nav-item dropdown" id="nav-profil">
