@@ -58,10 +58,10 @@
                         <li><a class="dropdown-item" href="#">Jeux</a></li>                        
                     </ul>
                 </li>
-                <li v-if="is_connected" class="nav-item">
+                <li v-if="is_connected === 1" class="nav-item">
                     <a class="nav-link" href="#">Favoris</a>
                 </li>
-                <li v-if="is_connected" class="nav-item dropdown" id="nav-profil">
+                <li v-if="is_connected === 1" class="nav-item dropdown" id="nav-profil">
                     <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../../images/dropdown.png"> </a>
                     <ul class="dropdown-menu" aria-labelledby="profilDropdown">
                         <li><a class="dropdown-item" href="#">Mon compte</a></li>
