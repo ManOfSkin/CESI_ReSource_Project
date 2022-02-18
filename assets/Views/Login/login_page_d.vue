@@ -32,7 +32,7 @@
         <div class="boutonsco">
           <input class="seconnecter" type="submit" value="Se connecter">
 
-          <input class="inscription" type="submit" value="S'inscrire">
+          <a href="inscription" class="inscription">S'inscrire</a>
         </div>
       </form>
     </div>
@@ -134,7 +134,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
 
 }
 
@@ -158,6 +158,9 @@ a {
   border: 1px solid #000091;
   background-color: #F5F5FF;
   text-decoration: none;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
 
   font-size: 20px;
   color: #000091;

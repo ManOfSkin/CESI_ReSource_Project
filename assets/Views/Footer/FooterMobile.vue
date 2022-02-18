@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .footer{
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;

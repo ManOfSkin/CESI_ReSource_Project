@@ -16,12 +16,16 @@
         {% endblock %}
     </head>
     <body>
-        <input type="hidden" id="is_connected" value="{{ auth }}">
-        <HeaderGood id="HeaderGood"></HeaderGood>
+        {% block header %}
+            <input type="hidden" id="is_connected" value="{{ auth }}">
+            <HeaderGood id="HeaderGood"></HeaderGood>
+        {% endblock %}
         {%  block body %}
             {{ auth}}
         {% endblock %}
-        <FooterGood id="FooterGood"></FooterGood>
+        {% block footer %}
+            <FooterGood id="FooterGood"></FooterGood>
+        {% endblock %}
         <script>
         if('serviceWorker' in navigator){
             navigator.serviceWorker.register("{{ asset('sw.js') }}")
