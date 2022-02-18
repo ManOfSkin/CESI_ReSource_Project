@@ -16,6 +16,8 @@ class FormAddRessourceController extends AbstractController
     #[Route('/ressource/add', name: 'formAddRessource')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $auth = $this->isGranted('ROLE_USER');
 
         $ressource = new Ressource();
