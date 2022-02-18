@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="!isMobile()" id="HeaderDesktop">
     <HeaderDesktop>
     </HeaderDesktop>

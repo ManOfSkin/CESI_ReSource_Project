@@ -8,14 +8,17 @@ import FooterMobile from "./Views/FooterMobile"; */
 
 import './styles/global.scss';
 import './styles/app.css';
+import HeaderGood from "./Views/Header/HeaderGood";
+import FooterGood from "./Views/Footer/FooterGood";
 
 const $ = require('jquery');
 require('bootstrap');
 
 new Vue({
-    components: { headerDesktop },
-    template: "<headerDesktop />"
-}).$mount("#headerDesktop ");
+    el: '#HeaderGood',
+    components: { HeaderGood },
+    template: "<HeaderGood />"
+})
 
 
 
@@ -42,3 +45,8 @@ new Vue({
     template: "<FooterDesktop />"
 }).$mount("#footerDesktop ");
 
+new Vue({
+    el: '#FooterGood',
+    components: { FooterGood },
+    template: "<FooterGood />"
+})

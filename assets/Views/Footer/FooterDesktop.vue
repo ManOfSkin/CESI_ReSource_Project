@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <div class="footer-up">
-          <a href="index.php">
+          <a href="../..">
             <div class="logo-footer">
                 <div class="logo-footer-ministere">
                     <svg width="140" height="145" viewBox="0 0 140 145" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,5 +174,8 @@ export default {
 .footer-down p{
   margin-left: 100px;
   padding-left: 16px;
+
+  margin-bottom: 0;
+  padding-bottom: 1rem;
 }
 </style>

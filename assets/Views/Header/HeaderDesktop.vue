@@ -1,7 +1,8 @@
 <template>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
+      {{ $attrs['data-isauthenticated'] }}
         <div class="navbar-up navbar-expand-lg navbar-light bg-light">
-            <a href="index.php">
+            <a href="../..">
               <div class="logo">
                   <div class="logo-ministere">
                       <svg width="112" height="102" viewBox="0 0 112 102" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +50,7 @@
                     <a class="nav-link active" href="#">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../images/dropdown.png"></a>
+                    <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../../images/dropdown.png"></a>
                     <ul class="dropdown-menu" aria-labelledby="ressourceDropdown">
                         <li><a class="dropdown-item" href="#">Documents</a></li>
                         <li><a class="dropdown-item" href="#">Images</a></li>
@@ -60,13 +61,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Favoris</a>
                 </li>
-                <li class="nav-item dropdown" id="nav-profil">
-                    <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../images/dropdown.png"> </a>
+                <li v-if="is_connected" class="nav-item dropdown" id="nav-profil">
+                    <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../../images/dropdown.png"> </a>
                     <ul class="dropdown-menu" aria-labelledby="profilDropdown">
                         <li><a class="dropdown-item" href="#">Mon compte</a></li>
                         <li><a class="dropdown-item" href="#">Paramètres</a></li>
-                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="logout">Déconnexion</a></li>
                     </ul>
+                </li>
+                <li v-else class="nav-item" id="nav-profil">
+                    <a class="nav-link" href="login">Connexion</a>
                 </li>
             </ul>
         </div>
@@ -74,8 +78,16 @@
 </template>
 
 <script>
+const $ = require('jquery');
+const is_connected = $("input#is_connected").val();
+
 export default {
-  name: "HeaderDesktop"
+  name: "HeaderDesktop",
+  data() {
+    return {
+      is_connected: is_connected
+    };
+  }
 };
 </script>
 
@@ -133,6 +145,7 @@ export default {
   border: none;
   border-top-left-radius: 4px;
   border-bottom: solid var(--bs-primary) 2px;
+  padding: 16px 8px;
 }
 
 .search input:hover{
