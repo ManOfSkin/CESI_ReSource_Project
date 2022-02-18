@@ -129,16 +129,16 @@
                 {{ form_widget(form.titre_article) }}
             </div>
             <div class="col mb-4">
-                {{ form_label(form.type_ressource) }}
-                {{ form_widget(form.type_ressource) }} 
-            </div>
-            <div class="col mb-4">
                 {#  {{ form_label(form.type_categorie) }}
                 {{ form_widget(form.type_categorie) }} #}
-                <label for="type_ressource" class="form-label">Type de ressources</label>
-                <select name="type_ressource" id="type_ressource" class="form-select">
-                    <option value="null">Sélectionnez un type de ressources</option>
+                <label for="categorie" class="form-label">Type de catégories</label>
+                <select name="categorie" id="categorie" class="form-select">
+                    <option value="null">Sélectionnez une catégorie</option>
                 </select>
+            </div>
+            <div class="col mb-4">
+                {{ form_label(form.type_ressource) }}
+                {{ form_widget(form.type_ressource) }} 
             </div>
         </div>
         <div class="row">
