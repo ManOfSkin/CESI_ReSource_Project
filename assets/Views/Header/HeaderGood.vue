@@ -1,8 +1,7 @@
 <template>
 
   <div v-if="!isMobile()" id="HeaderDesktop">
-    {{$attrs['data-isauthenticated']}}
-    <HeaderDesktop :data-isAuthenticated="$attrs['data-isauthenticated']">
+    <HeaderDesktop>
     </HeaderDesktop>
   </div>
   <div v-else>
@@ -20,22 +19,6 @@
     components: {
       HeaderDesktop,
       HeaderMobile
-    },
-    prop: {
-      'isAuthenticated': {
-        type: Boolean,
-        default: false
-      }
-    },
-    data() {
-      return {
-        isAuthenticated: this.isAuthenticated
-      }
-    },
-    mounted: function() {
-      this.isAuthenticated = this.$attrs['data-isauthenticated'];
-      console.log(this.$attrs);
-      console.log(this.isAuthenticated);
     },
     methods: {
       isMobile() {
