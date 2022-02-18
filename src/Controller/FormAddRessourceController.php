@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\RessourceType;
+use App\Entity\Ressource;
+
 
 class FormAddRessourceController extends AbstractController
 {
@@ -15,8 +19,8 @@ class FormAddRessourceController extends AbstractController
         $auth = $this->isGranted('ROLE_USER');
 
         $ressource = new Ressource();
-        $form = $this->createForm(RessourceType::class, $form);
-        
+        $form = $this->createForm(RessourceType::class, $ressource);
+
         $form->handleRequest($request);
         if ($form->get('ajouter')->isClicked()){
             if ($form->isSubmitted() && $form->isValid()){
