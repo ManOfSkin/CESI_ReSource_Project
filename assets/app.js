@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import DemoComponent from "./DemoComponent";
 import login_page_m from "./Views/login_page_m";
+import login_page_d from "./Views/login_page_d";
 import FooterDesktop from "./Views/FooterDesktop";
 import headerDesktop from "./Views/HeaderDesktop";
 /* import HeaderMobile from "./Views/HeaderMobile";
@@ -17,15 +17,17 @@ new Vue({
     template: "<headerDesktop />"
 }).$mount("#headerDesktop ");
 
-new Vue({
-    components: { DemoComponent },
-    template: "<DemoComponent />"
-}).$mount("#demoComponent ");
 
 
 new Vue({
-    template: "<login_page_m />"
-}).$mount("#login_page_m ");
+        components: { login_page_d },
+    template: "<login_page_d />"
+}).$mount("#login_page_d ");
+
+// new Vue({
+//     components: { login_page_m },
+//     template: "<login_page_m />"
+// }).$mount("#login_page_m ");
 /* new Vue({
     components: { HeaderMobile },
 }).$mount("#headerMobile ");
