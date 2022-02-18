@@ -10,7 +10,7 @@ class Ressource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: 'id_ressource',type: 'integer')]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]

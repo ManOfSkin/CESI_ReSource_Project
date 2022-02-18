@@ -10,7 +10,7 @@ class TypeRelation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: 'id_type_relation',type: 'integer')]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
