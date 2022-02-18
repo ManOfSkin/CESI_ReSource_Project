@@ -32,6 +32,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private $statut;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $pseudo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,6 +113,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setStatut(?Statut $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
