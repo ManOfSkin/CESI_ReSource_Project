@@ -47,7 +47,7 @@
         <div class="navbar-down navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Accueil</a>
+                    <a class="nav-link" href="../..">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../../images/dropdown.png"></a>
