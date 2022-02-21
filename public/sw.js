@@ -33,7 +33,7 @@ self.addEventListener('install', event => {
 
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', event => {
-  vent.waitUntil(
+  event.waitUntil(
       (async () => {
         // Enable navigation preload if it's supported.
         // See https://developers.google.com/web/updates/2017/02/navigation-preload
