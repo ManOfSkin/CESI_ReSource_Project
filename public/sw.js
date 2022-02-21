@@ -15,7 +15,11 @@
 // in turn trigger the install event again.
 const CACHE_NAME = 'offline';
 const OFFLINE_VERSION = '1.0.0';
-const OFFLINE_URL = 'offline.html';
+const OFFLINE_URL = [
+    'offline/offline.html',
+    'offline/fonts/Marianne-Regular.woff',
+    'offline/fonts/Marianne-Regular.woff2'
+];
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
