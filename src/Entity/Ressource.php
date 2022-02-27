@@ -60,7 +60,11 @@ class Ressource
     private $commentaire;
 
     public function __construct()
-    {
+    {   
+        $this->date_creation = new \DateTime('now');
+        $this->date_modification = new \DateTime('now');
+
+
         $this->type_relation = new ArrayCollection();
         $this->suivi = new ArrayCollection();
         $this->commentaire = new ArrayCollection();

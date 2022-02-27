@@ -26,6 +26,10 @@ class Categorie
         $this->ressources = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->libelle_categorie;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

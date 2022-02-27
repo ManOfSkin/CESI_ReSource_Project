@@ -16,6 +16,10 @@ class TypeRessource
     #[ORM\Column(type: 'string', length: 50)]
     private $libelle_type_ressource;
 
+    public function __toString() {
+        return $this->libelle_type_ressource;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

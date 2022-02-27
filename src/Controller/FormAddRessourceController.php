@@ -22,10 +22,16 @@ class FormAddRessourceController extends AbstractController
 
         $ressource = new Ressource();
         $form = $this->createForm(RessourceType::class, $ressource);
-
         $form->handleRequest($request);
+
         if ($form->get('ajouter')->isClicked()){
             if ($form->isSubmitted() && $form->isValid()){
+
+                $libelle_ressource = "libelle_ressource temporaire";
+                $ressource->setLibelleRessource($libelle_ressource);
+
+                $ressource->setValidationAdministrateur(true);
+
                 $entityManager->persist($ressource);
                 $entityManager->flush();
             }

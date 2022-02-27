@@ -129,12 +129,8 @@
                 {{ form_widget(form.titre_article) }}
             </div>
             <div class="col mb-4">
-                {#  {{ form_label(form.type_categorie) }}
-                {{ form_widget(form.type_categorie) }} #}
-                <label for="categorie" class="form-label">Type de catégories</label>
-                <select name="categorie" id="categorie" class="form-select">
-                    <option value="null">Sélectionnez une catégorie</option>
-                </select>
+                {{ form_label(form.categorie) }}
+                {{ form_widget(form.categorie) }}
             </div>
             <div class="col mb-4">
                 {{ form_label(form.type_ressource) }}
@@ -143,37 +139,10 @@
         </div>
         <div class="row">
             <div class="col mb-4">
-{#                     {{ form_label(form.type_relation) }}
-#}
-                    <label for="relation" class="form-label">Type de relations</label>
-                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-{#                         {{ form_widget(form.type_relation) }}
-#}
-                        <div class="col mb-2">
-                            <input type="checkbox" name="soi" id="soi">
-                            <label for="soi">Soi</label>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="checkbox" name="conjoint" id="conjoint">
-                            <label for="conjoint">Conjoints</label>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="checkbox" name="famille" id="famille">
-                            <label for="famille">Famille</label>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="checkbox" name="professionnel" id="professionnel">
-                            <label for="professionnel">Professionnelle</label>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="checkbox" name="amis" id="amis">
-                            <label for="amis">Amis et communautés</label>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="checkbox" name="inconnu" id="inconnu">
-                            <label for="inconnu">Inconnus</label>
-                        </div>                    
-</div>
+                {{ form_label(form.type_relation) }}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                    {{ form_widget(form.type_relation) }}
+                </div>
             </div>
         </div>
         <div class="row">
