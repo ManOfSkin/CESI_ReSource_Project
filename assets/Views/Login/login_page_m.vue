@@ -12,7 +12,7 @@
 <!--      </defs>-->
 <!--    </svg>-->
     <div class="formulaire">
-      <form action="login" method="post">
+      <form class="mb-3" action="login" method="post">
         <div class="Id">
           <label class="labelform" for="username">Identifiant:</label>
           <input class="inputform" type="text" id="username" name="_username">
@@ -24,9 +24,15 @@
         </div>
 
         <div class="sousform">
-          <input class="inputrem" type="checkbox" id="rememberme" name="_remember_me" value="1">
-          <label class="labelrem" for="rememberme">Se souvenir de moi</label>
-          <a href="">Mot de passe oublié ?</a>
+          <div class="row">
+            <div class="col">
+              <input class="inputrem" type="checkbox" id="rememberme" name="_remember_me" value="1">
+              <label class="labelrem" for="rememberme">Se souvenir de moi</label>
+            </div>
+            <div class="col">
+              <a href="">Mot de passe oublié ?</a>
+            </div>
+          </div>
         </div>
 
         <div class="boutonsco">
@@ -47,6 +53,11 @@ export default {
 
 <style scoped>
 
+form{
+  width: 80%;
+  margin: auto;
+}
+
 .image {
   height: 400px;
   width: 400px;
@@ -59,7 +70,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .Id {
@@ -78,7 +89,7 @@ export default {
 }
 
 .labelform {
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .inputform {
@@ -87,8 +98,8 @@ export default {
   border-left: none;
   border-right: none;
   background: #ebeceb;
-  font-size: 40px;
-  width: 800px;
+  font-size: 16px;
+  /*width: 800px;*/
   height: 90px;
   margin-top: 20px;
 }
@@ -102,21 +113,20 @@ export default {
 }
 
 .inputrem {
-  width: 46px;
-  height: 46px;
-  margin-right: 20px;
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
   border-radius: 50%;
   border: solid 1px;
   appearance: none;
 }
 
 .labelrem {
-  font-size: 30px;
-  margin-right: 100px;
+  font-size: 15px;
 }
 
 a {
-  font-size: 30px;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -125,8 +135,6 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .seconnecter {
@@ -134,14 +142,14 @@ a {
   background-color: #000091;
   text-decoration: none;
 
-  font-size: 40px;
+  font-size: 20px;
   color: #F5F5FF;
 
   margin-bottom: 5%;
   margin-top: 12%;
 
-  width: 800px;
-  height: 100px;
+  width: 275px;
+  height: 50px;
 }
 
 .inscription {
@@ -152,11 +160,11 @@ a {
   padding-top: 12px;
   padding-bottom: 12px;
 
-  font-size: 40px;
+  font-size: 20px;
   color: #000091;
 
-  width: 800px;
-  height: 100px;
+  width: 275px;
+  height: 50px;
 
 }
 
