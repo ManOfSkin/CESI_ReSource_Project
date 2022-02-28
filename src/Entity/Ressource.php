@@ -59,6 +59,10 @@ class Ressource
     #[ORM\OneToMany(mappedBy: 'ressource', targetEntity: Commenter::class)]
     private $commentaire;
 
+    #[ORM\ManyToOne(targetEntity: Groupe::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $groupe;
+
     public function __construct()
     {   
         $this->date_creation = new \DateTime('now');
@@ -275,6 +279,18 @@ class Ressource
                 $commentaire->setRessource(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGroupe(): ?Groupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(?Groupe $groupe): self
+    {
+        $this->groupe = $groupe;
 
         return $this;
     }
