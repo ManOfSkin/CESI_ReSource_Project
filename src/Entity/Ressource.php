@@ -18,12 +18,6 @@ class Ressource
     #[ORM\Column(type: 'string', length: 255)]
     private $libelle_ressource;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $titre_article;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $article;
-
     #[ORM\Column(type: 'datetimetz')]
     private $date_creation;
 
@@ -87,30 +81,6 @@ class Ressource
     public function setLibelleRessource(string $libelle_ressource): self
     {
         $this->libelle_ressource = $libelle_ressource;
-
-        return $this;
-    }
-
-    public function getTitreArticle(): ?string
-    {
-        return $this->titre_article;
-    }
-
-    public function setTitreArticle(string $titre_article): self
-    {
-        $this->titre_article = $titre_article;
-
-        return $this;
-    }
-
-    public function getArticle(): ?string
-    {
-        return $this->article;
-    }
-
-    public function setArticle(?string $article): self
-    {
-        $this->article = $article;
 
         return $this;
     }
