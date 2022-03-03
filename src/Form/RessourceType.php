@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class RessourceType extends AbstractType
 {
@@ -17,6 +18,11 @@ class RessourceType extends AbstractType
             ->add('categorie')
             ->add('type_relation')
             ->add('type_ressource')
+            ->add('file', FileType::class,[
+                'label' => 'Ajouter une ressource',
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('ajouter', SubmitType::class)
             ->add('annuler', SubmitType::class)
         ;

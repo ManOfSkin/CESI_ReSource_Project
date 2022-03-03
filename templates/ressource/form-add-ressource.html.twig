@@ -147,9 +147,9 @@
         </div>
         <div class="row">
             <div class="col mb-4">
-                <label for="file" class="form-label">Ajouter une ressource</label>
-                <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : xxx, xxx, xxx. Plusieurs fichiers possibles.</p>
-                <input type="file" class="form-control" name="file" id="file" multiple>
+                {{ form_label(form.file) }}
+                <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : pdf, png, jpg, jpeg. Plusieurs fichiers possibles.</p>
+                {{ form_widget(form.file) }}
             </div>
         </div>
     </div>

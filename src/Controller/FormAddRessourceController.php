@@ -27,11 +27,13 @@ class FormAddRessourceController extends AbstractController
         if ($form->get('ajouter')->isClicked()){
             if ($form->isSubmitted() && $form->isValid()){
 
-                $titre_article = "test";
-                $ressource->setTitreArticle($titre_article);
-
                 $ressource->setValidationAdministrateur(true);
                 $ressource->setCitoyenModification($user->getId());
+
+                $file = $form['file']->getData();
+                $file = json_encode($file);
+                $attribut_media = array($file);
+                $ressource->setAttributMedia($attribut_media);
 
                 $entityManager->persist($ressource);
                 $entityManager->flush();
