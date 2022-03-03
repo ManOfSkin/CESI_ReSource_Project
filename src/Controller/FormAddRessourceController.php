@@ -7,14 +7,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\RessourceType;
 use App\Entity\Ressource;
-
 
 class FormAddRessourceController extends AbstractController
 {
     #[Route('/ressource/add', name: 'formAddRessource')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         
@@ -27,10 +27,11 @@ class FormAddRessourceController extends AbstractController
         if ($form->get('ajouter')->isClicked()){
             if ($form->isSubmitted() && $form->isValid()){
 
-                $libelle_ressource = "libelle_ressource temporaire";
-                $ressource->setLibelleRessource($libelle_ressource);
+                $titre_article = "test";
+                $ressource->setTitreArticle($titre_article);
 
                 $ressource->setValidationAdministrateur(true);
+                $ressource->setCitoyenModification($user->getId());
 
                 $entityManager->persist($ressource);
                 $entityManager->flush();
