@@ -31,8 +31,39 @@ class FormAddRessourceController extends AbstractController
                 $ressource->setCitoyenModification($user->getId());
 
                 $file = $form['file']->getData();
-                $file = json_encode($file);
-                $attribut_media = array($file);
+                $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileWeight = filesize($file);
+                $extension = strtolower($file->guessExtension());
+
+                if ($extension === 'pdf'){
+                    $mime = 'application/pdf';
+                } elseif ($extension === 'docx'){
+                    $mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                } elseif ($extension === 'doc'){
+                    $mime = 'application/msword';
+                } elseif ($extension === 'odt'){
+                    $mime = 'application/vnd.oasis.opendocument.text';
+                } elseif ($extension === 'xlsx'){
+                    $mime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+                } elseif ($extension === 'xls'){
+                    $mime = 'application/vnd.ms-excel';
+                } elseif ($extension === 'ods'){
+                    $mime = 'application/vnd.oasis.opendocument.spreadsheet';
+                } elseif ($extension === 'html' || $extension === 'htm'){
+                    $mime = 'text/html';
+                } elseif ($extension === 'png'){
+                    $mime = 'image/png';
+                } elseif ($extension === 'jpeg' || $extension === 'jpg'){
+                    $mime = 'image/jpeg';
+                } elseif ($extension === 'bmp'){
+                    $mime = 'image/bmp';
+                }
+
+                $target_dir = "C:/wamp64/www/Projet_Cube_1/public/GED/";
+
+                $file->move($target_dir, $file_name.'.'.$extension);
+
+                $attribut_media = array("nom" => $file_name, "poids" => $fileWeight, "extension" => $extension, "MIME" => $mime, "emplacement" => $target_dir.$file_name.'.'.$extension);
                 $ressource->setAttributMedia($attribut_media);
 
                 $entityManager->persist($ressource);
