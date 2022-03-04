@@ -31,8 +31,8 @@
             </div>
           </a>
             <div class="text-footer">
-                <p>Texte optionnel 3 lignes maximum.<br><br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.
+                <p>(RE)ssources Relationnelles<br><br>
+                    Site web d'échange de ressources et de conseils entre citoyens.
                 </p>
                 <ul>
                     <li>
