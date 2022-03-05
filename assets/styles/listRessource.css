@@ -1,0 +1,10 @@
+.container{
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.titre_table{
+    background: #F6F6F6;
+}

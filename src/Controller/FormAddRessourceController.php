@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Groupe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,9 @@ class FormAddRessourceController extends AbstractController
 
                 $ressource->setValidationAdministrateur(true);
                 $ressource->setCitoyenModification($user->getId());
+
+                $groupe = $entityManager->getRepository(Groupe::class)->findOneBy(['id' => '1']);
+                $ressource->setGroupe($groupe);
 
                 $file = $form['file']->getData();
                 $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
