@@ -17,6 +17,7 @@
                     <th class="titre_table">Nom de la ressource</th>
                     <th class="titre_table">Auteur de la ressource</th>
                     <th class="titre_table">Type de ressource</th>
+                    <th class="titre_table">Catégorie</th>
                     <th class="titre_table">Date de publication</th>
                     <th class="titre_table">Nombre de consultations</th>
                     <th class="titre_table">Nombre de favoris</th>
@@ -28,6 +29,7 @@
                         <td>{{ ressource.getLibelleRessource() }}</td>
                         <td>{{ utilisateurs[loop.index0].nom }}</td>
                         <td>{{ typeRessources[loop.index0].getLibelleTypeRessource() }}</td>
+                        <td>TODO</td>
                         <td>{{ dateCreations[loop.index0] }}</td>
                         <td></td>
                         <td></td>
