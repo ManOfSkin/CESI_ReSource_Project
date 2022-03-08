@@ -34,47 +34,81 @@ class FormAddRessourceController extends AbstractController
                 $groupe = $entityManager->getRepository(Groupe::class)->findOneBy(['id' => '1']);
                 $ressource->setGroupe($groupe);
 
-                $file = $form['file']->getData();
-                $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileWeight = filesize($file);
-                $extension = strtolower($file->guessExtension());
+                if ($form['type_ressource']->getData() == "Cours au format PDF"){
+                    $file = $form['filePDF']->getData();
+                    $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileWeight = filesize($file);
+                    $extension = strtolower($file->guessExtension());
+    
+                    if ($extension === 'pdf'){
+                        $mime = 'application/pdf';
+                    }
+                } elseif (($form['type_ressource']->getData() == "Activité / Jeu à réaliser") || ($form['type_ressource']->getData() == "Exercice / Atelier") || ($form['type_ressource']->getData() == "Fiche de lecture")){
+                    $file = $form['fileFichier']->getData();
+                    $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileWeight = filesize($file);
+                    $extension = strtolower($file->guessExtension());
+    
+                    if ($extension === 'pdf'){
+                        $mime = 'application/pdf';
+                    } elseif ($extension === 'docx'){
+                        $mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                    } elseif ($extension === 'doc'){
+                        $mime = 'application/msword';
+                    } elseif ($extension === 'odt'){
+                        $mime = 'application/vnd.oasis.opendocument.text';
+                    } elseif ($extension === 'xlsx'){
+                        $mime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+                    } elseif ($extension === 'xls'){
+                        $mime = 'application/vnd.ms-excel';
+                    } elseif ($extension === 'ods'){
+                        $mime = 'application/vnd.oasis.opendocument.spreadsheet';
+                    }
+                } elseif ($form['type_ressource']->getData() == "Carte défi"){
+                    $file = $form['fileImg']->getData();
+                    $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileWeight = filesize($file);
+                    $extension = strtolower($file->guessExtension());
+    
+                    if ($extension === 'png'){
+                        $mime = 'image/png';
+                    } elseif ($extension === 'jpeg' || $extension === 'jpg'){
+                        $mime = 'image/jpeg';
+                    } elseif ($extension === 'bmp'){
+                        $mime = 'image/bmp';
+                    }
+                } elseif (($form['type_ressource']->getData() == "Article") || ($form['type_ressource']->getData() == "Jeu en ligne") || ($form['type_ressource']->getData() == "Vidéo")){
+                    $url = $form['lien']->getData();
 
-                if ($extension === 'pdf'){
-                    $mime = 'application/pdf';
-                } elseif ($extension === 'docx'){
-                    $mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-                } elseif ($extension === 'doc'){
-                    $mime = 'application/msword';
-                } elseif ($extension === 'odt'){
-                    $mime = 'application/vnd.oasis.opendocument.text';
-                } elseif ($extension === 'xlsx'){
-                    $mime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-                } elseif ($extension === 'xls'){
-                    $mime = 'application/vnd.ms-excel';
-                } elseif ($extension === 'ods'){
-                    $mime = 'application/vnd.oasis.opendocument.spreadsheet';
-                } elseif ($extension === 'html' || $extension === 'htm'){
-                    $mime = 'text/html';
-                } elseif ($extension === 'png'){
-                    $mime = 'image/png';
-                } elseif ($extension === 'jpeg' || $extension === 'jpg'){
-                    $mime = 'image/jpeg';
-                } elseif ($extension === 'bmp'){
-                    $mime = 'image/bmp';
+                    $attribut_media = array("lien" => $url);
+                    $ressource->setAttributMedia($attribut_media);
+                } else {
+                    $attribut_media = array("test" => 'test');
+                    $ressource->setAttributMedia($attribut_media);
                 }
-
-                $target_dir = "C:/wamp64/www/Projet_Cube_1/public/GED/";
-
-                $file->move($target_dir, $file_name.'.'.$extension);
-
-                $attribut_media = array("nom" => $file_name, "poids" => $fileWeight, "extension" => $extension, "MIME" => $mime, "emplacement" => $target_dir.$file_name.'.'.$extension);
-                $ressource->setAttributMedia($attribut_media);
 
                 $entityManager->persist($ressource);
                 $entityManager->flush();
+                
+                if (($form['type_ressource']->getData() == "Cours au format PDF") || ($form['type_ressource']->getData() == "Activité / Jeu à réaliser") || ($form['type_ressource']->getData() == "Exercice / Atelier") || ($form['type_ressource']->getData() == "Fiche de lecture") || ($form['type_ressource']->getData() == "Carte défi")){
+                    $id = $ressource->getId();
+                    
+                    $target_dir = "C:/wamp64/www/Projet_Cube_1/public/GED/".$id."/";
+        
+                    $file->move($target_dir, $file_name.'.'.$extension);
+    
+                    $attribut_media = array("nom" => $file_name, "poids" => $fileWeight, "extension" => $extension, "MIME" => $mime, "emplacement" => $target_dir.$file_name.'.'.$extension);
+                    $ressource->setAttributMedia($attribut_media);
+                    
+                    $entityManager->persist($ressource);
+                    $entityManager->flush();
+                } 
+
+
+                return $this->redirect($this->generateUrl('ressource'));
             }
         } elseif ($form->get('annuler')->isClicked()){
-
+            return $this->redirect($this->generateUrl('ressource'));
         }
 
         return $this->render('ressource/form-add-ressource.html.twig', [

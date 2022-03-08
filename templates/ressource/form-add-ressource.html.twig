@@ -6,10 +6,43 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('formAddRessource') }}
+    <script type="text/javascript">        
+        function changeTypeRessource(type){
+            var choice = type.selectedIndex,
+            type_ressource = type.options[choice].value;
+            console.log(type_ressource);
+
+            if (type_ressource == 1 || type_ressource == 5 || type_ressource == 6){
+                document.getElementById("input_fichiers_pdf").style.display = "none";
+                document.getElementById("input_img").style.display = "none";
+                document.getElementById("input_lien").style.display = "none";                
+                document.getElementById("input_fichiers").style.display = "block";
+            } else if (type_ressource == 2 || type_ressource == 7 || type_ressource == 8){
+                document.getElementById("input_fichiers_pdf").style.display = "none";
+                document.getElementById("input_img").style.display = "none";
+                document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_lien").style.display = "block";                
+            } else if (type_ressource == 3){
+                document.getElementById("input_fichiers_pdf").style.display = "none";
+                document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_lien").style.display = "none";                 
+                document.getElementById("input_img").style.display = "block";
+            } else if (type_ressource == 4){
+                document.getElementById("input_img").style.display = "none";
+                document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_lien").style.display = "none";     
+                document.getElementById("input_fichiers_pdf").style.display = "block";
+            } else {
+                document.getElementById("input_fichiers_pdf").style.display = "none";
+                document.getElementById("input_img").style.display = "none";
+                document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_lien").style.display = "none";     
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block body %}
-    {# <div id="formAddRessource"></div> #}
     {{ form_start(form) }}
     <div class="form-header">
         <img src="{{ asset('img/retour.png') }}" onclick="window.history.back()" style="cursor: pointer">
@@ -18,7 +51,7 @@
     <div class="form-body">
         <div class="row row-cols-1 row-cols-md-3">
             <div class="col mb-4">
-                {{ form_label(form.libelle_ressource) }}
+                {{ form_label(form.libelle_ressource, 'Nom de la ressource') }}
                 {{ form_widget(form.libelle_ressource) }}
             </div>
             <div class="col mb-4">
@@ -26,13 +59,13 @@
                 {{ form_widget(form.categorie) }}
             </div>
             <div class="col mb-4">
-                {{ form_label(form.type_ressource) }}
-                {{ form_widget(form.type_ressource) }} 
+                {{ form_label(form.type_ressource, 'Type de ressource') }}
+                {{ form_widget(form.type_ressource, { 'attr': { 'onchange':  'changeTypeRessource(this)'} } ) }} 
             </div>
         </div>
         <div class="row">
             <div class="col mb-4">
-                {{ form_label(form.type_relation) }}
+                {{ form_label(form.type_relation, 'Type de relation') }}
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                     {{ form_widget(form.type_relation) }}
                 </div>
@@ -40,9 +73,25 @@
         </div>
         <div class="row">
             <div class="col mb-4">
-                {{ form_label(form.file) }}
-                <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : pdf, png, jpg, jpeg. Plusieurs fichiers possibles.</p>
-                {{ form_widget(form.file) }}
+                <div id="input_fichiers_pdf">
+                    {{ form_label(form.filePDF) }}
+                    <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : pdf. Plusieurs fichiers possibles.</p>
+                    {{ form_widget(form.filePDF) }}
+                </div>
+                <div id="input_fichiers">
+                    {{ form_label(form.fileFichier) }}
+                    <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : pdf, doc, docx. Plusieurs fichiers possibles.</p>
+                    {{ form_widget(form.fileFichier) }}
+                </div>
+                <div id="input_img">
+                    {{ form_label(form.fileImg) }}
+                    <p class="text-secondary">Taille maximale : xx Mo. Formats supportés : png, jpg, jpeg. Plusieurs fichiers possibles.</p>
+                    {{ form_widget(form.fileImg) }}
+                </div>
+                <div id="input_lien">
+                    {{ form_label(form.lien, 'Lien') }}
+                    {{ form_widget(form.lien) }}
+                </div>
             </div>
         </div>
     </div>
