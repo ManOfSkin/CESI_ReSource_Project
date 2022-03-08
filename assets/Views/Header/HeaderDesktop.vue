@@ -51,11 +51,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="ressourceDropdown" role="button" data-bs-toggle="dropdown" href="#">Ressources <img class="dropdown" src="../../images/dropdown.png"></a>
                     <ul class="dropdown-menu" aria-labelledby="ressourceDropdown">
-                        <li><a class="dropdown-item" v-if="is_connected == 1" href="ressource/add">Ajouter une ressource</a></li>
-                        <li><a class="dropdown-item" href="#">Documents</a></li>
-                        <li><a class="dropdown-item" href="#">Images</a></li>
-                        <li><a class="dropdown-item" href="#">Vidéos</a></li>
-                        <li><a class="dropdown-item" href="#">Jeux</a></li>                        
+                        <li><a class="dropdown-item" v-if="is_connected == 1" href="../ressource/add">Ajouter une ressource</a></li>
+                        <li><a class="dropdown-item" href="../ressource">Listes des ressources</a></li>
                     </ul>
                 </li>
                 <li v-if="is_connected == 1" class="nav-item">

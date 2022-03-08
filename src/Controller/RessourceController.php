@@ -25,7 +25,7 @@ class RessourceController extends AbstractController
         $repositoryTypeRessource= $em->getRepository(TypeRessource::class);
         $utilisateurs = [];
         $typeRessources = [];
-        $dateModif = [];
+        $dateCreations = [];
         foreach ($ressources as $ressource) {
             $ressource->getCitoyenModification();
             $utilisateurs[] = $repositoryUtilisateur->findOneBy(['id' => $ressource->getCitoyenModification()]);
