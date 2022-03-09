@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220308151417 extends AbstractMigration
+final class Version20220309173801 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -33,7 +33,6 @@ final class Version20220308151417 extends AbstractMigration
         $this->addSql('CREATE TABLE utilisateur (id INT AUTO_INCREMENT NOT NULL, statut_id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_1D1C63B3E7927C74 (email), INDEX IDX_1D1C63B3F6203804 (statut_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Asso_utilisateur_groupe (utilisateur_id INT NOT NULL, groupe_id INT NOT NULL, INDEX IDX_21D5C1B4FB88E14F (utilisateur_id), INDEX IDX_21D5C1B47A45358C (groupe_id), PRIMARY KEY(utilisateur_id, groupe_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE Asso_utilisateur_ressource (utilisateur_id INT NOT NULL, ressources_id INT NOT NULL, INDEX IDX_69942341FB88E14F (utilisateur_id), INDEX IDX_699423413C361826 (ressources_id), PRIMARY KEY(utilisateur_id, ressources_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, available_at DATETIME NOT NULL, delivered_at DATETIME DEFAULT NULL, INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE commenter ADD CONSTRAINT FK_AB751D0AFB88E14F FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (id)');
         $this->addSql('ALTER TABLE commenter ADD CONSTRAINT FK_AB751D0AFC6CD52A FOREIGN KEY (ressource_id) REFERENCES ressource (id)');
         $this->addSql('ALTER TABLE commenter ADD CONSTRAINT FK_AB751D0ABA9CD190 FOREIGN KEY (commentaire_id) REFERENCES commentaire (id)');
@@ -82,6 +81,6 @@ final class Version20220308151417 extends AbstractMigration
         $this->addSql('DROP TABLE utilisateur');
         $this->addSql('DROP TABLE Asso_utilisateur_groupe');
         $this->addSql('DROP TABLE Asso_utilisateur_ressource');
-        $this->addSql('DROP TABLE messenger_messages');
+        $this->addSql('ALTER TABLE messenger_messages CHANGE body body LONGTEXT NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE headers headers LONGTEXT NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE queue_name queue_name VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }
