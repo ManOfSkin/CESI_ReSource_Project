@@ -15,7 +15,7 @@ $(document).ready(function() {
         },
         "searching": false,
         "order": [
-            [0, "asc"]
+            [4, "desc"]
         ],
     });
 });

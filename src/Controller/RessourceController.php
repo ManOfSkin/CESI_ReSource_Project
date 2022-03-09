@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Ressource;
 use App\Entity\TypeRessource;
 use App\Entity\Utilisateur;
@@ -23,14 +24,17 @@ class RessourceController extends AbstractController
         $ressources = $entityManager->getRepository(Ressource::class)->findAll();
         $repositoryUtilisateur= $em->getRepository(Utilisateur::class);
         $repositoryTypeRessource= $em->getRepository(TypeRessource::class);
+        $repositoryCategorie = $em->getRepository(Categorie::class);
         $utilisateurs = [];
         $typeRessources = [];
         $dateCreations = [];
+        $categories = [];
         foreach ($ressources as $ressource) {
             $ressource->getCitoyenModification();
             $utilisateurs[] = $repositoryUtilisateur->findOneBy(['id' => $ressource->getCitoyenModification()]);
             $typeRessources[] = $repositoryTypeRessource->findOneBy(['id' => $ressource->getTypeRessource()]);
             $dateCreations[] = $ressource->getDateCreation()->format('d/m/Y');
+            $categories[] = $repositoryCategorie->findOneBy(['id' => $ressource->getCategorie()]);
         }
 
         return $this->render('ressource/ressource.html.twig', [
@@ -39,6 +43,7 @@ class RessourceController extends AbstractController
             'utilisateurs' => $utilisateurs,
             'typeRessources' => $typeRessources,
             'dateCreations' => $dateCreations,
+            'categories' => $categories,
         ]);
     }
 }
