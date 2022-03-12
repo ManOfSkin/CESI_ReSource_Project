@@ -14,6 +14,7 @@
         <table id="datatables" class="table table-active table-striped">
             <thead>
                 <tr>
+                    <th class="titre_table">Actions</th>
                     <th class="titre_table">Nom de la ressource</th>
                     <th class="titre_table">Auteur de la ressource</th>
                     <th class="titre_table">Type de ressource</th>
@@ -26,6 +27,14 @@
             <tbody>
                 {% for ressource in ressources %}
                     <tr>
+                        <td>
+                            {# <a href="{{ url('ressource/show', { id: {{ ressource.getId() }} }) }}">Voir</a> #}
+                            <button class="btn btn-primary" onclick="window.location.href='../ressource/show?id={{ ressource.getId() }}'">Voir</button>
+                           {#  {{ form_start(form) }}
+                                {{ form_widget(form.id, {value : ressource.getId()}) }}
+                                {{ form_widget(form.voir) }}
+                            {{ form_end(form) }} #}
+                        </td>
                         <td>{{ ressource.getLibelleRessource() }}</td>
                         <td>{{ utilisateurs[loop.index0].nom }}</td>
                         <td>{{ typeRessources[loop.index0].getLibelleTypeRessource() }}</td>

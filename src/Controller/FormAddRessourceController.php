@@ -94,10 +94,11 @@ class FormAddRessourceController extends AbstractController
                     $id = $ressource->getId();
                     
                     $target_dir = "C:/wamp64/www/Projet_Cube_1/public/GED/".$id."/";
-        
+                    $path_file = "../GED/".$id."/";
+
                     $file->move($target_dir, $file_name.'.'.$extension);
     
-                    $attribut_media = array("nom" => $file_name, "poids" => $fileWeight, "extension" => $extension, "MIME" => $mime, "emplacement" => $target_dir.$file_name.'.'.$extension);
+                    $attribut_media = array("nom" => $file_name, "poids" => $fileWeight, "extension" => $extension, "MIME" => $mime, "emplacement" => $path_file.$file_name.'.'.$extension);
                     $ressource->setAttributMedia($attribut_media);
                     
                     $entityManager->persist($ressource);

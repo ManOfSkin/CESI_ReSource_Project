@@ -12,12 +12,15 @@ use PhpParser\Node\Expr\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\ShowType;
+
 
 class RessourceController extends AbstractController
 {
     private $em;
     #[Route('/ressource', name: 'ressource')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $auth = $this->isGranted('ROLE_USER');
         $em = $entityManager;
@@ -37,6 +40,15 @@ class RessourceController extends AbstractController
             $categories[] = $repositoryCategorie->findOneBy(['id' => $ressource->getCategorie()]);
         }
 
+       /*  $form = $this->createForm(ShowType::class);
+        $form->handleRequest($request);
+
+        if ($form->get('voir')->isClicked()){
+            if ($form->isSubmitted() && $form->isValid()){
+         
+            }
+        } */
+
         return $this->render('ressource/ressource.html.twig', [
             'auth' => $auth,
             'ressources' => $ressources,
@@ -44,6 +56,7 @@ class RessourceController extends AbstractController
             'typeRessources' => $typeRessources,
             'dateCreations' => $dateCreations,
             'categories' => $categories,
+            /* 'form' => $form->createView() */
         ]);
     }
 }

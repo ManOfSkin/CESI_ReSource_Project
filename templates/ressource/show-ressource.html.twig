@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+ {% block stylesheets %}
+     {{ encore_entry_link_tags('showRessource') }}
+ {% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('showRessource') }}
+{% endblock %}
+
+{% block body %}
+    <div class="box">
+        <div class="box-header">
+            <div class="box-title">
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col-md-1">
+                        <img src="{{ asset('img/retour.png') }}" onclick="window.history.back()" style="cursor: pointer">
+                    </div>
+                    <div class="col-md-11">
+                        <h1>{{ ressources.getLibelleRessource() }}</h1>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button type="button" id="dropdownMenuKebab" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;margin:10px;">
+                        <img src="{{ asset('img/button-kebab.png') }}">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Ajouter aux favoris</a></li>
+                        <li><a class="dropdown-item" href="#">Ajouter à une liste de lecture</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box-subtitle">
+                <div class="box-badge">
+                    <div class="badge-categorie me-2">
+                        <span class="badge rounded-pill bg-light text-dark">{{ categories.getLibelleCategorie() }}</span>
+                    </div>
+                    <div class="badge-type">
+                        <span class="badge rounded-pill bg-light text-dark" id="type_ressource">{{ typeRessources.getLibelleTypeRessource() }}</span>
+                    </div>
+                </div>
+                <div class="info-ressource ms-2">
+                    <p class="text-muted">Publié le : {{ dateCreations }}<br>
+                        Par : {{ utilisateurs.prenom }} {{ utilisateurs.nom }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="box-body" onload="showContent()">
+            <div id="contenu_video">
+                <iframe src="{{ url }}"></iframe>
+            </div>
+            <div id="contenu_file">
+                <embed src="{{ emplacement }}" type="{{ mime }}">
+            </div>
+            <div id="contenu_lien" style="width:100%">
+               <p>Lien de l'article : <a href="{{ url }}" target="_blank">{{ url }}</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var type_ressource = document.getElementById("type_ressource").innerHTML;
+                
+            console.log(type_ressource);
+
+            if (type_ressource == 'Vidéo'){
+                document.getElementById("contenu_file").style.display = "none";
+                document.getElementById("contenu_lien").style.display = "none";
+                document.getElementById("contenu_video").style.display = "block";
+            } else if (type_ressource == 'Jeu en ligne' || type_ressource == 'Article') {
+                document.getElementById("contenu_video").style.display = "none";
+                document.getElementById("contenu_file").style.display = "none";
+                document.getElementById("contenu_lien").style.display = "block";
+            } else {
+                document.getElementById("contenu_video").style.display = "none";
+                document.getElementById("contenu_lien").style.display = "none";
+                document.getElementById("contenu_file").style.display = "block";
+            }
+        });     
+    </script>
+{% endblock %}

@@ -8,3 +8,12 @@
 .titre_table{
     background: #F6F6F6;
 }
+
+td button{
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+td button:hover{
+    background-color: #0909b9;
+}
