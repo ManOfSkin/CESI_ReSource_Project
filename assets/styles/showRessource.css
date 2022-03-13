@@ -24,13 +24,13 @@ html{
     margin: 16px 0 5px 0;
 }
 
-.dropdown{
+.dropdownShowRessource{
     position: absolute;
     top: 0;
     left: 90%;
 }
 
-.dropdown button{
+.dropdownShowRessource button{
     border: none;
     background: none;
 }
@@ -82,7 +82,7 @@ iframe, embed{
         height: 32px;
     }
 
-    .dropdown{
+    .dropdownShowRessource{
         position: absolute;
         top: 20px;
         left: 85%;
