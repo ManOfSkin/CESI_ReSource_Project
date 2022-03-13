@@ -15,7 +15,7 @@ use App\Entity\Ressource;
 class FormAddRessourceController extends AbstractController
 {
     #[Route('/ressource/add', name: 'formAddRessource')]
-    public function index(Request $request, EntityManagerInterface $entityManager, UserInterface $user): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, UserInterface $user = null): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         
