@@ -41,7 +41,12 @@ import $ from "jquery";
 const is_connected = $("input#is_connected").val();
 
 export default {
-  name: "FooterMobile"
+  name: "FooterMobile",
+  data() {
+    return {
+      is_connected: is_connected
+    };
+  }
 }
 </script>
 
