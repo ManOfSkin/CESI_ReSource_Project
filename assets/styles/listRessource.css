@@ -1,8 +1,24 @@
-.container{
+html{
+    overflow-x: hidden;
+}
+
+.box{
+    position: relative;
+    height: auto;
+    margin: 5vh 10% 5vh 10%;
+
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 4px;
+}
+
+h3{
+    margin: 16px;
+}
+
+#datatables_wrapper{
+    margin: 16px!important;
 }
 
 .titre_table{
@@ -16,4 +32,43 @@ td button{
 
 td button:hover{
     background-color: #0909b9;
+}
+
+@media (max-width: 1000px) {
+    .box{
+        position: relative;
+        height: auto;
+        margin: 0px;
+    
+        background: none;
+        border: none; 
+    }
+
+    h3{
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 24px;
+        padding: 16px;
+        margin: 0;
+
+        margin-bottom: -40px;
+    }
+
+    .dataTables_length, .dataTables_info{
+        display: none;
+    }
+
+    #datatables_wrapper{
+        margin: 0!important;
+    }
+
+    .pagination{
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    #datatables_paginate{
+        margin-top: -40px;
+        margin-bottom: 25px;
+    }
 }
