@@ -15,28 +15,39 @@
             if (type_ressource == 1 || type_ressource == 5 || type_ressource == 6){
                 document.getElementById("input_fichiers_pdf").style.display = "none";
                 document.getElementById("input_img").style.display = "none";
-                document.getElementById("input_lien").style.display = "none";                
+                document.getElementById("input_lien").style.display = "none";
+                document.getElementById("input_video").style.display = "none";             
                 document.getElementById("input_fichiers").style.display = "block";
-            } else if (type_ressource == 2 || type_ressource == 7 || type_ressource == 8){
+            } else if (type_ressource == 2 || type_ressource == 7){
                 document.getElementById("input_fichiers_pdf").style.display = "none";
                 document.getElementById("input_img").style.display = "none";
                 document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_video").style.display = "none";
                 document.getElementById("input_lien").style.display = "block";                
             } else if (type_ressource == 3){
                 document.getElementById("input_fichiers_pdf").style.display = "none";
                 document.getElementById("input_fichiers").style.display = "none";
-                document.getElementById("input_lien").style.display = "none";                 
+                document.getElementById("input_lien").style.display = "none";
+                document.getElementById("input_video").style.display = "none";                
                 document.getElementById("input_img").style.display = "block";
             } else if (type_ressource == 4){
                 document.getElementById("input_img").style.display = "none";
                 document.getElementById("input_fichiers").style.display = "none";
-                document.getElementById("input_lien").style.display = "none";     
+                document.getElementById("input_lien").style.display = "none";
+                document.getElementById("input_video").style.display = "none"; 
                 document.getElementById("input_fichiers_pdf").style.display = "block";
+            } else if (type_ressource == 8){
+                document.getElementById("input_img").style.display = "none";
+                document.getElementById("input_fichiers").style.display = "none";
+                document.getElementById("input_lien").style.display = "none";     
+                document.getElementById("input_fichiers_pdf").style.display = "none";
+                document.getElementById("input_video").style.display = "block";                
             } else {
                 document.getElementById("input_fichiers_pdf").style.display = "none";
                 document.getElementById("input_img").style.display = "none";
                 document.getElementById("input_fichiers").style.display = "none";
                 document.getElementById("input_lien").style.display = "none";     
+                document.getElementById("input_video").style.display = "none";                
             }
         }
     </script>
@@ -91,6 +102,11 @@
                 <div id="input_lien">
                     {{ form_label(form.lien, 'Lien') }}
                     {{ form_widget(form.lien) }}
+                </div>
+                <div id="input_video">
+                    {{ form_label(form.lienVideo, 'Lien de la vidéo') }}
+                    <p class="text-secondary">(Seulement lien de vidéo Youtube pour le moment)</p>
+                    {{ form_widget(form.lienVideo) }}
                 </div>
             </div>
         </div>

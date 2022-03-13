@@ -77,10 +77,18 @@ class FormAddRessourceController extends AbstractController
                     } elseif ($extension === 'bmp'){
                         $mime = 'image/bmp';
                     }
-                } elseif (($form['type_ressource']->getData() == "Article") || ($form['type_ressource']->getData() == "Jeu en ligne") || ($form['type_ressource']->getData() == "Vidéo")){
+                } elseif (($form['type_ressource']->getData() == "Article") || ($form['type_ressource']->getData() == "Jeu en ligne")){
                     $url = $form['lien']->getData();
 
                     $attribut_media = array("lien" => $url);
+                    $ressource->setAttributMedia($attribut_media);
+                } elseif ($form['type_ressource']->getData() == "Vidéo"){
+                    
+                    $url = $form['lienVideo']->getData();
+
+                    $url2 = str_replace("watch?v=","embed/",$url);
+
+                    $attribut_media = array("lien" => $url2);
                     $ressource->setAttributMedia($attribut_media);
                 } else {
                     $attribut_media = array("test" => 'test');

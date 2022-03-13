@@ -39,6 +39,10 @@ class RessourceType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ))
+            ->add('lienVideo', TextType::class, array(
+                'mapped' => false,
+                'required' => false,
+            ))
             ->add('ajouter', SubmitType::class)
             ->add('annuler', SubmitType::class)
         ;
