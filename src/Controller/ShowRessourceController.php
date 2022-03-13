@@ -20,7 +20,7 @@ use PhpParser\Node\Expr\Array_;
 
 class ShowRessourceController extends AbstractController
 {
-    #[Route('/ressource/show', name: 'showRessource')]
+    #[Route('/ressource/show/{id}', name: 'showRessource')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $auth = $this->isGranted('ROLE_USER');

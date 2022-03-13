@@ -29,7 +29,7 @@
                     <tr>
                         <td>
                             {# <a href="{{ url('ressource/show', { id: {{ ressource.getId() }} }) }}">Voir</a> #}
-                            <button class="btn btn-primary" onclick="window.location.href='../ressource/show?id={{ ressource.getId() }}'">Voir</button>
+                            <button class="btn btn-primary" onclick="window.location.href='../ressource/show/{{ ressource.getId() }}'">Voir</button>
                            {#  {{ form_start(form) }}
                                 {{ form_widget(form.id, {value : ressource.getId()}) }}
                                 {{ form_widget(form.voir) }}
