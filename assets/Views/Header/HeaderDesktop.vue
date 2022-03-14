@@ -61,13 +61,13 @@
                 <li v-if="is_connected == 1" class="nav-item dropdown" id="nav-profil">
                     <a class="nav-link" id="profilDropdown" role="button" data-bs-toggle="dropdown" href="#">Profil <img class="dropdown" src="../../images/dropdown.png"> </a>
                     <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-                        <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                        <li><a class="dropdown-item" href="./user">Mon compte</a></li>
                         <li><a class="dropdown-item" href="#">Paramètres</a></li>
-                        <li><a class="dropdown-item" href="logout">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="./logout">Déconnexion</a></li>
                     </ul>
                 </li>
                 <li v-else class="nav-item" id="nav-profil">
-                    <a class="nav-link" href="login">Connexion</a>
+                    <a class="nav-link" href="./login">Connexion</a>
                 </li>
             </ul>
         </div>

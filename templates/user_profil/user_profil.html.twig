@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('listRessource') }}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="box">
+    <h3>Bonjour {{ user.pseudo }} </h3>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vos informations</h5>
+            <p class="card-text">
+                <ul class="list-group">
+                    <li class="list-group-item">Pseudo : {{ user.pseudo }}</li>
+                    <li class="list-group-item">Email : {{ user.email }}</li>
+                    <li class="list-group-item">Nom : {{ user.nom }}</li>
+                    <li class="list-group-item">Prénom : {{ user.prenom }}</li>
+                    <li class="list-group-item">Vos groupes : </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <div class="m-3 align-content-end">
+        <a href="./logout" class="btn btn-danger">Déconnexion</a>
+    </div>
+</div>
+{% endblock %}
