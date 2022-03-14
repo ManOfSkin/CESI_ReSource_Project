@@ -10,10 +10,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cette adresse mail.")
- */
+
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
+#[UniqueEntity('email', message:"Cet email est déjà utilisé")]
+#[UniqueEntity('pseudo',message:"Ce pseudo est déjà utilisé")]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
