@@ -32,7 +32,7 @@
                                 <button class="btn btn-primary" onclick="window.location.href='../ressource/show/{{ ressource.getId() }}'">Voir</button>
                             </td>
                             <td>{{ ressource.getLibelleRessource() }}</td>
-                            <td>{{ utilisateurs[loop.index0].nom }}</td>
+                            <td>{{ utilisateurs[loop.index0].pseudo }}</td>
                             <td>{{ typeRessources[loop.index0].getLibelleTypeRessource() }}</td>
                             <td>{{ categories[loop.index0].getLibelleCategorie() }}</td>
                             <td>{{ dateCreations[loop.index0] }}</td>
