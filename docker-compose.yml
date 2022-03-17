@@ -6,7 +6,10 @@ services:
       context: ./docker/httpd
     container_name: httpd
     networks:
-      - internal
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ./:/usr/local/apache2/htdocs
       - ./docker/httpd/.env:/usr/local/apache2/htdocs/.env
@@ -21,7 +24,7 @@ services:
       context: ./docker/php
     container_name: php
     networks:
-      - internal
+      - web
       - db
     expose:
       - 9000
@@ -50,14 +53,14 @@ services:
     ports:
       - "8081:80"
     networks:
-      - internal
+      - web
       - db
     environment:
       PMA_HOST: "mariadb"
       PMA_PORT: "3306"
-      PMA_USER: "test"
-      PMA_PASSWORD: "test"
-      PMA_DATABASE: "test"
+#      PMA_USER: "test"
+#      PMA_PASSWORD: "test"
+#      PMA_DATABASE: "test"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pma.rule=Host(`pma.localhost`)"
@@ -67,12 +70,10 @@ services:
 
 
 networks:
-  net:
-    driver: bridge
+  web:
+    external: true
   db:
     name: cubes1_db
-  internal:
-    name: cubes1_internal
 
 
 ####> doctrine/doctrine-bundle ###
@@ -95,8 +96,8 @@ networks:
 ####< doctrine/doctrine-bundle ###
 
 
-
-    - "traefik.http.routers.cubes1.rule=Host(`cesi.jeanmazagot.com`)"
-    - "traefik.http.routers.cubes1.entrypoints=websecure"
-    - "traefik.http.routers.cubes1.service=cubes1"
-    - "traefik.http.routers.cubes1.tls.certresolver=le"
+#
+#    - "traefik.http.routers.cubes1.rule=Host(`cesi.jeanmazagot.com`)"
+#    - "traefik.http.routers.cubes1.entrypoints=websecure"
+#    - "traefik.http.routers.cubes1.service=cubes1"
+#    - "traefik.http.routers.cubes1.tls.certresolver=le"
