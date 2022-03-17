@@ -1,38 +1,6 @@
 version: '3.8'
 
 services:
-  traefik:
-    build:
-      context: ./docker/traefik
-    container_name: traefik
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    volumes:
-      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - net
-      - internal
-
-#  portainer:
-#    image: portainer/portainer-ce:alpine
-#    container_name: portainer
-#    depends_on:
-#      - traefik
-#    networks:
-#      - internal
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    expose:
-#      - "8000"
-#      - "9443"
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.portainer.rule=Host(`portainer.localhost`)"
-#      - "traefik.http.routers.portainer.entrypoints=web"
-
   httpd:
     build:
       context: ./docker/httpd
@@ -43,8 +11,6 @@ services:
       - ./:/usr/local/apache2/htdocs
       - ./docker/httpd/.env:/usr/local/apache2/htdocs/.env
       - ./docker/httpd/conf/000-default.conf:/usr/local/apache2/conf.d/000-default.conf
-    depends_on:
-      - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`cesi.localhost`)"
@@ -81,9 +47,6 @@ services:
     build:
       context: ./docker/pma
     container_name: pma
-    depends_on:
-      - mariadb
-      - traefik
     ports:
       - "8081:80"
     networks:
@@ -99,7 +62,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.pma.rule=Host(`pma.localhost`)"
       - "traefik.http.routers.pma.entrypoints=web"
-
 
 
 
@@ -131,3 +93,10 @@ networks:
 ####> doctrine/doctrine-bundle ###
 #  db-data:
 ####< doctrine/doctrine-bundle ###
+
+
+
+    - "traefik.http.routers.cubes1.rule=Host(`cesi.jeanmazagot.com`)"
+    - "traefik.http.routers.cubes1.entrypoints=websecure"
+    - "traefik.http.routers.cubes1.service=cubes1"
+    - "traefik.http.routers.cubes1.tls.certresolver=le"

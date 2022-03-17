@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.6.1
+    command:
+      - --api=true
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --providers.docker.network=web
+      - --entryPoints.web.address=:80
+      - --entryPoints.websecure.address=:443
+      - --certificatesResolvers.le.acme.email=mmonemail@monprovider.com
+      - --certificatesResolvers.le.acme.storage=/acme/acme.json
+      - --certificatesResolvers.le.acme.tlsChallenge=true
+      - --certificatesResolvers.le.acme.httpChallenge=true
+      - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web
+      - --log.level=DEBUG
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - "TZ=Europe/Paris"
+    networks:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./acme.json:/acme/acme.json
+    labels:
+      - traefik.http.routers.http_catchall.rule=HostRegexp(`{any:.+}`)
+      - traefik.http.routers.http_catchall.entrypoints=web
+      - traefik.http.routers.http_catchall.middlewares=https_redirect
+      - traefik.http.middlewares.https_redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.https_redirect.redirectscheme.permanent=true
+      - traefik.enable=true
+      - traefik.http.routers.traefik.rule=Host(`traefik.jeanmazagot.fr`)
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.tls=true
+      - traefik.http.routers.traefik.tls.certresolver=le
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.middlewares=traefik-auth
+      - traefik.http.middlewares.traefik-auth.basicauth.users=user:$$apr1$$Dm.5GCuD$$SasolJke9Ler7BNN5YKxV1
+      # Global redirection: https (www.) to https
+      - traefik.http.routers.wwwsecure-catchall.rule=HostRegexp(`{host:(www\.).+}`)
+      - traefik.http.routers.wwwsecure-catchall.entrypoints=websecure
+      - traefik.http.routers.wwwsecure-catchall.tls=true
+      - traefik.http.routers.wwwsecure-catchall.middlewares=wwwtohttps
+      # middleware: http(s)://(www.) to  https://
+      - traefik.http.middlewares.wwwtohttps.redirectregex.regex=^https?://(?:www\.)?(.+)
+      - traefik.http.middlewares.wwwtohttps.redirectregex.replacement=https://$${1}
+      - traefik.http.middlewares.wwwtohttps.redirectregex.permanent=true
+  networks:
+    web:
+      external: true
