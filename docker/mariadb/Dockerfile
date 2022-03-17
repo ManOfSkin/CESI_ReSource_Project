@@ -1,0 +1,4 @@
+ARG MARIADB_VERSION=10.7
+
+FROM mariadb:${MARIADB_VERSION}-focal
+

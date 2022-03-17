@@ -1,21 +1,133 @@
-version: '3'
+version: '3.8'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+  traefik:
+    build:
+      context: ./docker/traefik
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - net
+      - internal
 
-volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+#  portainer:
+#    image: portainer/portainer-ce:alpine
+#    container_name: portainer
+#    depends_on:
+#      - traefik
+#    networks:
+#      - internal
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    expose:
+#      - "8000"
+#      - "9443"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.portainer.rule=Host(`portainer.localhost`)"
+#      - "traefik.http.routers.portainer.entrypoints=web"
+
+  httpd:
+    build:
+      context: ./docker/httpd
+    container_name: httpd
+    networks:
+      - internal
+    volumes:
+      - ./:/usr/local/apache2/htdocs
+      - ./docker/httpd/.env:/usr/local/apache2/htdocs/.env
+      - ./docker/httpd/conf/000-default.conf:/usr/local/apache2/conf.d/000-default.conf
+    depends_on:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`cesi.localhost`)"
+      - "traefik.http.routers.app.entrypoints=web"
+
+  php:
+    build:
+      context: ./docker/php
+    container_name: php
+    networks:
+      - internal
+      - db
+    expose:
+      - 9000
+    volumes:
+        - ./docker/httpd/.env:/usr/local/apache2/htdocs/.env
+        - ./:/usr/local/apache2/htdocs
+
+  mariadb:
+    build:
+      context: ./docker/mariadb
+    container_name: mariadb
+    ports:
+       - "3306:3306"
+    networks:
+      - db
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "test"
+      MYSQL_PASSWORD: "test"
+
+  pma:
+    build:
+      context: ./docker/pma
+    container_name: pma
+    depends_on:
+      - mariadb
+      - traefik
+    ports:
+      - "8081:80"
+    networks:
+      - internal
+      - db
+    environment:
+      PMA_HOST: "mariadb"
+      PMA_PORT: "3306"
+      PMA_USER: "test"
+      PMA_PASSWORD: "test"
+      PMA_DATABASE: "test"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pma.rule=Host(`pma.localhost`)"
+      - "traefik.http.routers.pma.entrypoints=web"
+
+
+
+
+
+networks:
+  net:
+    driver: bridge
+  db:
+    name: cubes1_db
+  internal:
+    name: cubes1_internal
+
+
+####> doctrine/doctrine-bundle ###
+#  database:
+#    image: postgres:${POSTGRES_VERSION:-13}-alpine
+#    environment:
+#      POSTGRES_DB: ${POSTGRES_DB:-app}
+#      # You should definitely change the password in production
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+#      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+#    volumes:
+#      - db-data:/var/lib/postgresql/data:rw
+#      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+#      # - ./docker/db/data:/var/lib/postgresql/data:rw
+####< doctrine/doctrine-bundle ###
+#
+#volumes:
+####> doctrine/doctrine-bundle ###
+#  db-data:
+####< doctrine/doctrine-bundle ###
