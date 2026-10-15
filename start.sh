@@ -1,23 +1,39 @@
-databases:
-  # La base de données PostgreSQL gérée par Render
-  - name: resource-db
-    plan: free
-    databaseName: resource_db
-    user: resource_user
+#!/bin/bash
+set -e
 
-services:
-  # Ton application Web
-  - type: web
-    name: resource-app
-    env: docker
-    plan: free
-    dockerfilePath: ./Dockerfile
-    envVars:
-      - key: APP_ENV
-        value: prod
-      - key: APP_SECRET
-        generateValue: true
-      - key: DATABASE_URL
-        fromDatabase:
-          name: resource-db
-          property: connectionString
+# Attendre que la base de données soit prête (optionnel mais recommandé en cloud)
+echo "En attente de la base de données..."
+sleep 5
+
+# Créer la base de données (si elle n'existe pas)
+echo "Initialisation de la base de données..."
+php bin/console doctrine:database:create --if-not-exists
+
+# Générer et appliquer le schéma de la base de données
+echo "Génération et application du schéma PostgreSQL depuis les Entités..."
+php bin/console doctrine:schema:update --force --complete --no-interaction
+
+# Insérer les données initiales depuis le fichier SQL
+echo "Injection des données initiales..."
+# On utilise PDO via un script PHP rapide pour se connecter avec l'URL de DATABASE_URL
+php -r '
+$dbUrl = parse_url(getenv("DATABASE_URL"));
+$host = $dbUrl["host"];
+$port = isset($dbUrl["port"]) ? $dbUrl["port"] : 5432;
+$user = $dbUrl["user"];
+$pass = isset($dbUrl["pass"]) ? $dbUrl["pass"] : "";
+$dbName = ltrim($dbUrl["path"], "/");
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbName";
+try {
+    $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    $sql = file_get_contents("sql/init_data.sql");
+    $pdo->exec($sql);
+    echo "Données insérées avec succès.\n";
+} catch (Exception $e) {
+    echo "Erreur d" . "insertion des données : " . $e->getMessage() . "\n";
+}
+'
+
+# Lancer Apache en premier plan
+echo "Démarrage d'Apache..."
+apache2-foreground
