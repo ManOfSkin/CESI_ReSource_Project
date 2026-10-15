@@ -15,6 +15,7 @@ php bin/console doctrine:schema:update --force --complete --no-interaction
 
 # Insérer les données initiales depuis le fichier SQL
 echo "Injection des données initiales..."
+
 # On utilise PDO via un script PHP rapide pour se connecter avec l'URL de DATABASE_URL
 php -r '
 $dbUrl = parse_url(getenv("DATABASE_URL"));
@@ -26,7 +27,7 @@ $dbName = ltrim($dbUrl["path"], "/");
 $dsn = "pgsql:host=$host;port=$port;dbname=$dbName";
 try {
     $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    $sql = file_get_contents("sql/init_data.sql");
+    $sql = file_get_contents("sql/init_sql.sql");
     $pdo->exec($sql);
     echo "Données insérées avec succès.\n";
 } catch (Exception $e) {
