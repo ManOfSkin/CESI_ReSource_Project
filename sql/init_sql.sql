@@ -2,7 +2,7 @@
 INSERT INTO statut (id, libelle) VALUES (1, 'Actif') ON CONFLICT DO NOTHING;
 
 -- Insertion des catégories
-INSERT INTO categorie (id_categorie, libelle_categorie) VALUES
+INSERT INTO categorie (id, libelle_categorie) VALUES
     (1, 'Communication'),
     (2, 'Cultures'),
     (3, 'Développement personnel'),
