@@ -55,7 +55,7 @@ class Ressource
     private $commentaire;
 
     #[ORM\ManyToOne(targetEntity: Groupe::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $groupe;
 
     public function __construct()

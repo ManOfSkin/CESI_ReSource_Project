@@ -70,6 +70,12 @@
                 padding: 8px 10px;
             }
         }
+        label.required::after {
+            content: " *";
+            color: #d9534f; /* Rouge vif (le même que ton bandeau) */
+            font-weight: bold;
+            margin-left: 4px;
+        }
         </style>
         {%  block body %}
             {{ auth}}
