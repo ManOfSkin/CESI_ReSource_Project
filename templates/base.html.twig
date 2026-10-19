@@ -16,11 +16,7 @@
         {% endblock %}
     </head>
     <body>
-        {% block header %}
-            <input type="hidden" id="is_connected" value="{{ auth }}">
-            <HeaderGood id="HeaderGood"></HeaderGood>
-        {% endblock %}
-        <!-- BANDEAU DE PROTECTION JURIDIQUE : PROJET ÉTUDIANT -->
+            <!-- BANDEAU DE PROTECTION JURIDIQUE : PROJET ÉTUDIANT -->
         <div class="student-disclaimer-banner" role="region" aria-label="Avertissement projet étudiant">
             <div class="disclaimer-content">
                 <span class="disclaimer-icon">⚠️</span>
@@ -77,6 +73,11 @@
             margin-left: 4px;
         }
         </style>
+        {% block header %}
+            <input type="hidden" id="is_connected" value="{{ auth }}">
+            <HeaderGood id="HeaderGood"></HeaderGood>
+        {% endblock %}
+
         {%  block body %}
             {{ auth}}
         {% endblock %}
