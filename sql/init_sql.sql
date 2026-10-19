@@ -19,7 +19,7 @@ INSERT INTO categorie (id, libelle_categorie) VALUES
 ON CONFLICT DO NOTHING;
 
 -- Insertion des types de relation
-INSERT INTO type_relation (id_type_relation, libelle_type_relation) VALUES
+INSERT INTO type_relation (id, libelle_type_relation) VALUES
     (1, 'Soi'),
     (2, 'Conjoints'),
     (3, 'Famille : enfants / parents / fratrie'),
@@ -29,7 +29,7 @@ INSERT INTO type_relation (id_type_relation, libelle_type_relation) VALUES
 ON CONFLICT DO NOTHING;
 
 -- Insertion des types de ressource
-INSERT INTO type_ressource (id_type_ressource,libelle_type_ressource) VALUES
+INSERT INTO type_ressource (id,libelle_type_ressource) VALUES
     (1, 'Activité / Jeu à réaliser'),
     (2, 'Article'),
     (3, 'Carte défi'),
