@@ -22,8 +22,8 @@ ON CONFLICT DO NOTHING;
 INSERT INTO type_relation (id, libelle_type_relation) VALUES
     (1, 'Soi'),
     (2, 'Conjoints'),
-    (3, 'Famille : enfants / parents / fratrie'),
-    (4, 'Professionnelle : collègues, collaborateurs et managers'),
+    (3, 'Famille'),
+    (4, 'Professionnelle'),
     (5, 'Amis et communautés'),
     (6, 'Inconnus')
 ON CONFLICT DO NOTHING;
