@@ -22,21 +22,31 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // 1. Encode le mot de passe
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
 
+            // 2. Recherche du statut "Actif" par son libellé ou son ID
+            $statutRepository = $entityManager->getRepository(Statut::class);
+            $statut = $statutRepository->findOneBy(['libelle' => 'Actif']) 
+                   ?? $statutRepository->find(1);
 
-            $statut = $entityManager->getRepository(Statut::class)->findOneBy(['id' => '1']);
+            // 3. Filet de sécurité ultime : si le statut n'existe toujours pas, on le crée dynamiquement
+            if (!$statut) {
+                $statut = new Statut();
+                $statut->setLibelle('Actif');
+                $entityManager->persist($statut);
+            }
+
+            // 4. On assigne le statut à l'utilisateur
             $user->setStatut($statut);
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('index');
         }
