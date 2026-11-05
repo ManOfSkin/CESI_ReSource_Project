@@ -16,7 +16,12 @@
         {% endblock %}
     </head>
     <body>
-            <!-- BANDEAU DE PROTECTION JURIDIQUE : PROJET ÉTUDIANT -->
+
+        {% block header %}
+            <input type="hidden" id="is_connected" value="{{ auth }}">
+            <HeaderGood id="HeaderGood"></HeaderGood>
+        {% endblock %}
+           <!-- BANDEAU DE PROTECTION JURIDIQUE : PROJET ÉTUDIANT -->
         <div class="student-disclaimer-banner" role="region" aria-label="Avertissement projet étudiant">
             <div class="disclaimer-content">
                 <span class="disclaimer-icon">⚠️</span>
@@ -25,59 +30,6 @@
                 </span>
             </div>
         </div>
-
-        <style>
-        .student-disclaimer-banner {
-            background-color: #d9534f; /* Rouge vif d'alerte */
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 10px 15px;
-            position: sticky;
-            top: 0;
-            z-index: 99999;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-            width: 100%;
-        }
-
-        .disclaimer-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .disclaimer-icon {
-            font-size: 1.1rem;
-        }
-
-        .disclaimer-text strong {
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 768px) {
-            .student-disclaimer-banner {
-                font-size: 0.8rem;
-                padding: 8px 10px;
-            }
-        }
-        label.required::after {
-            content: " *";
-            color: #d9534f; /* Rouge vif (le même que ton bandeau) */
-            font-weight: bold;
-            margin-left: 4px;
-        }
-        </style>
-        {% block header %}
-            <input type="hidden" id="is_connected" value="{{ auth }}">
-            <HeaderGood id="HeaderGood"></HeaderGood>
-        {% endblock %}
-
         {%  block body %}
             {{ auth}}
         {% endblock %}
